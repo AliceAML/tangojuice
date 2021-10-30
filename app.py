@@ -3,6 +3,7 @@ from fastapi import FastAPI, Form
 from pydantic import BaseModel
 import spacy
 from fastapi.responses import HTMLResponse
+from collections import Counter
 
 from scraper import scrape
 
@@ -10,8 +11,12 @@ app = FastAPI()
 
 
 @app.post("/extract")
-async def extract(url: str = Form(...)):
-    return {"text": scrape(url)}
+async def extract(url: str = Form(...), recursive=False):
+    text = scrape(url, recursive=recursive)
+    counts = {
+        w: i for w, i in Counter(text.split()).items() if i > 5
+    }  # tokenizer nul juste pour tester
+    return counts
 
 
 """
