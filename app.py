@@ -5,7 +5,7 @@ import spacy
 from fastapi.responses import HTMLResponse
 from collections import Counter
 
-from scraper import scrape
+import scraper
 
 app = FastAPI(
     title="TangoJuice",
@@ -22,8 +22,8 @@ app = FastAPI(
     stupid tokenization only""",
     tags=["Routes"],
 )
-async def scrape(url: str = Form(...), recursive=False):
-    text = scrape(url, recursive=recursive)
+async def scrape(url=Form(...), recursive=False):
+    text = scraper.scrape(url, recursive=recursive)
     counts = {
         w: i for w, i in Counter(text.split()).items() if i > 5
     }  # tokenizer nul juste pour tester
