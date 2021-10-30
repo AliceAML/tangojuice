@@ -3,8 +3,6 @@ from bs4 import BeautifulSoup
 from collections import Counter
 from urllib.parse import urljoin, urlparse
 
-import tldextract
-
 MAX_NB_LINKS = 50
 
 
@@ -15,7 +13,6 @@ def scrape(url: str, recursive=False) -> str:
     """
     print("scrape", url)
 
-    domain = tldextract.extract(url).domain
     netloc = urlparse(url).netloc
 
     response = requests.get(url)
