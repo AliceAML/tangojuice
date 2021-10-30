@@ -3,6 +3,11 @@ Vocabulary extraction project
 
 [Links and ideas on Notion](https://sturdy-starfish-3ee.notion.site/Projet-API-31a173f329eb45c4acdcfc5e60d851e1)
 
+## How to
+* clone repo
+* start uvicorn `uvicorn app:app`
+* go to `localhost:8000/docs`
+
 ## To-do list
 
 - [ ]  Script python qui prend en entrée du texte brut et une langue et ressort une liste triée par niveau (débutant, intermédiaire, avancé) et par fréquence dans le texte, avec aussi les phrases exemples !
