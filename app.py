@@ -7,10 +7,20 @@ from collections import Counter
 
 from scraper import scrape
 
-app = FastAPI()
+app = FastAPI(
+    title="TangoJuice",
+    description="This API extracts vocabulary from webpages and classifies them by frequency",
+    version="0.1",
+)
 
 
-@app.post("/extract")
+@app.post(
+    "/extract",
+    name="Extract",
+    summary="Returns a list of words from a webpage",
+    description="if recursive = true, will also scrap links to the same domain that are on the page",
+    tags=["Routes"],
+)
 async def extract(url: str = Form(...), recursive=False):
     text = scrape(url, recursive=recursive)
     counts = {
