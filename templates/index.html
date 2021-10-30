@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>TangoJuice</title>
+    <link rel="icon" type="image/x-icon" href="images/beverage_box.png">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <h1>TangoJuice</h1>
+    <p>Délicieux extracteur de vocabulaire</p>
+
+    <form action="http://localhost:8000/scrape" method="POST">
+        <label for="url">Url à scraper</label>
+        <input id="url" name="url" type="url"></input>
+        <button type="submit">Scrape</button>
+        <br />
+        <label for="recursive">Recursive</label>
+        <input type="checkbox" id="recursive" name="recursive" value="true">
+    </form>
+
+</html>
