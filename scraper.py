@@ -50,7 +50,10 @@ def scrape(url: str, recursive=False) -> str:
         ]
 
         for link in list(set(inside_links))[:MAX_NB_LINKS]:
-            text += scrape(link)
+            try:
+                text += scrape(link)
+            except requests.exceptions.InvalidSchema as e:
+                print(e)
 
     return text
 
