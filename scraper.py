@@ -17,21 +17,9 @@ def scrape(url: str, recursive=False) -> str:
 
     domain = tldextract.extract(url).domain
     netloc = urlparse(url).netloc
-    # print(netloc)
 
     response = requests.get(url)
-    soup = BeautifulSoup(response.text, "lxml")  # html5lib : ignore hidden comments!
-    # filtered_soup = [
-    #     elt for elt in soup.find_all() if elt.name not in ("script", "noscript")
-    # ]
-
-    # for elt in filtered_soup:
-    #     text = elt.get_text().strip()
-    #     if "Javascript," in text.split():
-    #         print(elt.name)
-    #         print([parent.name for parent in elt.parents])
-
-    # text = " ".join(filtered_soup)
+    soup = BeautifulSoup(response.text, "lxml")
 
     for elt in soup("noscript"):
         elt.extract()
@@ -43,7 +31,7 @@ def scrape(url: str, recursive=False) -> str:
     if recursive:
         links = [link["href"] for link in soup.find_all("a", attrs={"href": True})]
 
-        inside_links = [  # limited to same netloc and not same domain to limit nb
+        inside_links = [  # limited to same netloc to limit nb
             urljoin(url, link)
             for link in links
             if urlparse(link).netloc in (netloc, "")
