@@ -15,13 +15,14 @@ app = FastAPI(
 
 
 @app.post(
-    "/extract",
-    name="Extract",
-    summary="Returns a list of words from a webpage",
-    description="if recursive = true, will also scrap links to the same domain that are on the page",
+    "/scrape",
+    name="Scrape",
+    summary="Returns a raw list of words from a webpage",
+    description="""if recursive = true, will also scrap links to the same domain that are on the page
+    stupid tokenization only""",
     tags=["Routes"],
 )
-async def extract(url: str = Form(...), recursive=False):
+async def scrape(url: str = Form(...), recursive=False):
     text = scrape(url, recursive=recursive)
     counts = {
         w: i for w, i in Counter(text.split()).items() if i > 5
