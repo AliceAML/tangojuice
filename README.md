@@ -1,9 +1,9 @@
-# TangoJuice :beverage_box:
-Vocabulary extractor
+# :beverage_box: TangoJuice
+*Vocabulary extractor*
 
 [Links and ideas on Notion](https://sturdy-starfish-3ee.notion.site/Projet-API-31a173f329eb45c4acdcfc5e60d851e1)
 
-## How to
+## How to run the API
 * clone repo
 * start uvicorn `uvicorn app:app`
 * go to `localhost:8000/docs`
