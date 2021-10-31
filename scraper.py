@@ -4,6 +4,7 @@ from collections import Counter
 from urllib.parse import urljoin, urlparse
 
 import youtube
+import youtube_transcript_api._errors
 
 MAX_NB_LINKS = 50
 
@@ -30,7 +31,10 @@ def scrape(url: str, lang, recursive=False) -> str:
     # add call to youtube.get_text() for youtube videos !
     # check if it's a youtube video
     if is_youtube_video(url):
-        text = youtube.get_text(url, lang)
+        try:
+            text = youtube.get_text(url, lang)
+        except youtube_transcript_api._errors.NoTranscriptFound as e:
+            raise e
     else:
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "lxml")
@@ -53,7 +57,7 @@ def scrape(url: str, lang, recursive=False) -> str:
 
             for link in list(set(inside_links))[:MAX_NB_LINKS]:
                 try:
-                    text += scrape(link)
+                    text += scrape(link, lang=lang)
                 except requests.exceptions.InvalidSchema as e:
                     print(e)
 
@@ -64,5 +68,9 @@ if __name__ == "__main__":
     text = scrape(
         "https://www.youtube.com/watch?v=cQl6jUjFjp4&t=26s", recursive=False, lang="en"
     )
-    counts = {w: i for w, i in Counter(text.split()).items() if i > 5}
+    counts = {
+        w: i
+        for w, i in sorted(Counter(text.split()).items(), key=lambda x: -x[1])
+        if i > 1
+    }
     print(counts)
