@@ -3,10 +3,16 @@
 
 [Links and ideas on Notion](https://sturdy-starfish-3ee.notion.site/Projet-API-31a173f329eb45c4acdcfc5e60d851e1)
 
-## How to run the API
+## How to run the API locally
 * clone repo
+* setup virtual environment:
+    ```console
+    python3 -m virtualenv .venv
+    source .venv/bin/activate
+    pip install -U -r requirements.txt
+    ```
 * start uvicorn `uvicorn app:app`
-* go to `localhost:8000/docs`
+* go to [localhost:8000](http://localhost:8000)
 
 ## To-do list
 
