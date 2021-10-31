@@ -26,6 +26,7 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 - [ ]  Script qui scrape un site et récupère le contenu texte, avec option « récursive »
 - [x]  Implémenter la **traduction** des mots et des phrases
 - [x]  Faire l’API qui prend le lien  et renvoie un json
+    - [ ] ajouter choix de langue à l'API
 - [ ]  créer flashcards Anki
 - [ ]  S’occuper de l’interface HTML
 - [x]  Ajouter support Youtube
