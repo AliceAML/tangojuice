@@ -15,13 +15,29 @@
     <h1>TangoJuice</h1>
     <p>Délicieux extracteur de vocabulaire</p>
 
-    <form action="http://localhost:8000/scrape" method="POST">
+    <form action="/scrape" method="POST">
         <label for="url">Url à scraper</label>
         <input id="url" name="url" type="url"></input>
         <button type="submit">Scrape</button>
         <br />
         <label for="recursive">Recursive</label>
         <input type="checkbox" id="recursive" name="recursive" value="true">
+        <label for="inputLang">Langue de la source</label>
+        <select id="inputLang" name="simple">
+            <!-- TODO automatiser cette liste à partir de la base de données -->
+            <option>Allemand</option>
+            <option>Anglais</option>
+            <option>Français</option>
+            <option>Japonais</option>
+        </select>
+        <label for="outputLang">Langue de la traduction</label>
+        <select id="outputLang" name="simple">
+            <!-- Ici mettre toutes les langues de Google Translate ! -->
+            <option>Allemand</option>
+            <option>Anglais</option>
+            <option>Français</option>
+            <option>Japonais</option>
+        </select>
     </form>
 
 </html>

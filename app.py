@@ -1,6 +1,4 @@
-import pathlib
 from fastapi import FastAPI, Form
-from pydantic import BaseModel
 import spacy
 from fastapi.responses import HTMLResponse
 from collections import Counter
@@ -12,6 +10,16 @@ app = FastAPI(
     description="This API extracts vocabulary from webpages and classifies them by frequency",
     version="0.1",
 )
+
+
+@app.get(
+    "/",
+    name="Index",
+)
+async def index():
+    with open("templates/index.html", "r") as f:
+        index = f.read()
+    return HTMLResponse(index)
 
 
 @app.post(
