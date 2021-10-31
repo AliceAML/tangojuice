@@ -28,7 +28,8 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 - [x]  Faire l’API qui prend le lien  et renvoie un json
 - [ ]  créer flashcards Anki
 - [ ]  S’occuper de l’interface HTML
-- [ ]  Implémenter Youtube et/ou Netflix
+- [x]  Ajouter support Youtube
+- [ ]  Ajouter support Netflix
 
 **Idées d’amélioration**
 
