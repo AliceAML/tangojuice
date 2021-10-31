@@ -1,6 +1,3 @@
-# tutos : https://www.youtube.com/playlist?list=PLDnNM3HYR2mUKXci_c20CS8MEfeSr6gOj
-# Google API Python client https://github.com/googleapis/google-api-python-client
-
 from youtube_transcript_api import YouTubeTranscriptApi
 from urllib.parse import urlparse, parse_qs
 
