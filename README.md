@@ -11,7 +11,10 @@
     source .venv/bin/activate
     pip install -U -r requirements.txt
     ```
-* start uvicorn `uvicorn app:app`
+* start uvicorn 
+    ```console
+    uvicorn app:app
+    ```
 * go to [localhost:8000](http://localhost:8000)
 
 ## To-do list
