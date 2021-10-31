@@ -1,9 +1,8 @@
-import pathlib
-from fastapi import FastAPI, Form
-from pydantic import BaseModel
+from fastapi import FastAPI, Form, HTTPException
 import spacy
 from fastapi.responses import HTMLResponse
 from collections import Counter
+import youtube_transcript_api._errors
 
 import scraper
 
@@ -14,6 +13,16 @@ app = FastAPI(
 )
 
 
+@app.get(
+    "/",
+    name="Index",
+)
+async def index():
+    with open("templates/index.html", "r") as f:
+        index = f.read()
+    return HTMLResponse(index)
+
+
 @app.post(
     "/scrape",
     name="Scrape",
@@ -22,8 +31,11 @@ app = FastAPI(
     stupid tokenization only""",
     tags=["Routes"],
 )
-async def scrape(url=Form(...), recursive=False):
-    text = scraper.scrape(url, recursive=recursive)
+async def scrape(url=Form(...), recursive=Form(default=False), inputLang=Form(...)):
+    try:
+        text = scraper.scrape(url, recursive=recursive, lang=inputLang)
+    except youtube_transcript_api._errors.NoTranscriptFound as e:
+        raise HTTPException(status_code=404, detail="Subtitles not found")
     counts = {
         w: i for w, i in Counter(text.split()).items() if i > 5
     }  # tokenizer nul juste pour tester
