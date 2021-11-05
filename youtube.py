@@ -10,8 +10,9 @@ def get_text(url: str, lang: str) -> str:
     return "\n".join(text_only)
 
 
-# to do add possibility to get the translation
+# TODO add possibility to get the translation
 # add info about whether it's a generated transcript or a manual transcript
+# to help tokenization ?
 # https://pypi.org/project/youtube-transcript-api/
 
 if __name__ == "__main__":

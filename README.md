@@ -30,7 +30,7 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 - [ ]  créer flashcards Anki
 - [ ]  S’occuper de l’interface HTML
 - [x]  Ajouter support Youtube
-- [ ]  Ajouter support Netflix
+- [ ]  Ajouter support Netflix  -> pas trouvé d'API qu'on peut utiliser. Autre idée = utiliser une API qui permet de récupérer les sous-titres pour n'importe quel film ou série. Problème : là uassi, pas de bonne API. Une idée plus simple serait de permettre l'envoi d'un fichier .srt par l'utilisateur.
 
 **Idées d’amélioration**
 
