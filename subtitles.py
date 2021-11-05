@@ -14,7 +14,7 @@ def get_text_from_srt(path):
         text = ""
         for line in parsed_srt:
             text += line.content + "\n"
-    return text
+    return text.strip()
 
 
 def get_subtitle_text(title, language, year):
