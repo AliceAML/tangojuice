@@ -7,6 +7,16 @@ from pathlib import Path
 SUB_PATH = os.path.relpath("static/subtitles")
 
 
+def get_text_from_srt(path):
+    text = ""
+    with open(path, "r", encoding="utf-8") as f:
+        parsed_srt = srt.parse(f.read())
+        text = ""
+        for line in parsed_srt:
+            text += line.content + "\n"
+    return text
+
+
 def get_subtitle_text(title, language, year):
     # DOWNLOAD SUBS
     sub = subtitle.search(
@@ -25,10 +35,7 @@ def get_subtitle_text(title, language, year):
     srts = Path(SUB_PATH).rglob("*.srt")
     text = ""
     for srt_file in srts:
-        with open(srt_file, "r", encoding="utf-8") as f:
-            parsed_srt = srt.parse(f.read())
-            for line in parsed_srt:
-                text += line.content + "\n"
+        get_text_from_srt(srt_file)
 
     # DELETE ALL FILES in SUB_PATH
     for file in Path(SUB_PATH).rglob("*"):
@@ -45,4 +52,5 @@ if __name__ == "__main__":
     #     )
     # )
     # print(get_subtitle_text("extraction", "2020", "english"))
-    print(get_subtitle_text("Squid Game", "2021", "english", season=1, episode=1))
+    # print(get_subtitle_text("Squid Game", "2021", "english", season=1, episode=1))
+    print(get_text_from_srt("static/subtitles/Finch 2021 _English.srt"))
