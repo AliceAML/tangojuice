@@ -1,12 +1,22 @@
+"""Extract text from urls (webpage or youtube video)"""
+
 import requests
 from bs4 import BeautifulSoup
 from collections import Counter
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, parse_qs
 
-import youtube
 import youtube_transcript_api._errors
+from youtube_transcript_api import YouTubeTranscriptApi
 
 MAX_NB_LINKS = 50
+
+
+def youtube_get_text(url: str, lang: str) -> str:
+    video_id = parse_qs(urlparse(url).query)["v"][0]
+    print(video_id)
+    transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=[lang])
+    text_only = [elt["text"] for elt in transcript]
+    return "\n".join(text_only)
 
 
 def is_youtube_video(url):
@@ -32,7 +42,7 @@ def scrape(url: str, lang, recursive=False) -> str:
     # check if it's a youtube video
     if is_youtube_video(url):
         try:
-            text = youtube.get_text(url, lang)
+            text = youtube_get_text(url, lang)
         except youtube_transcript_api._errors.NoTranscriptFound as e:
             raise e
     else:

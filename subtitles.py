@@ -1,3 +1,5 @@
+"""Extract text from subtitle files (srt)"""
+
 from subsceneAPI import subtitle  # ça marche mais ce package est pas top
 import os
 import zipfile
@@ -15,6 +17,7 @@ def get_text_from_srt(path):
     return text
 
 
+# CETTE FONCTION MARCHE PAS VRAIMENT
 def get_subtitle_text(title, language, year):
     # DOWNLOAD SUBS
     sub = subtitle.search(
