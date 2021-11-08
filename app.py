@@ -55,7 +55,7 @@ async def scrape(
     ]
 
     return templates.TemplateResponse(
-        "results.html", {"request": request, "results": words}
+        "results.html", {"request": request, "words": words}
     )
 
 
