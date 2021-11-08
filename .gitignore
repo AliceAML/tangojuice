@@ -3,4 +3,5 @@ __pycache__/app.cpython-39.pyc
 __pycache__/scraper.cpython-39.pyc
 config.py
 .venv/
+venv/
 __pycache__/
