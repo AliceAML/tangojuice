@@ -3,6 +3,7 @@
 This module implements vocabulary extraction. It is able to perform the extraction from an URL to an article or a video from
 anyone of the following domain name:
 cn.nytimes.com (chinese new-york times)
+
 For now it just runs on the character level,
 token level procesing has yet to be implemented
 .. (to be continued: youtube,)
@@ -17,6 +18,7 @@ import lxml
 from bs4 import BeautifulSoup
 import spacy
 
+
 global threshold
 global punctuation
 punctuation = (
@@ -30,6 +32,7 @@ threshold = 5
 with open("hskHanziList.json", "r") as istream:
     global hsk_voc
     hsk_voc = json.load(istream)
+
 
 
 def squeeze_all_from_url(url):
@@ -83,6 +86,12 @@ def get_hsk_level(character):
             return int(level)
     return 7
 
+
+'''
+input: raw text (str)
+out: dict of dict. 1st Key: character  2nd keys frequency, level, translations
+
+'''
 
 def infos_and_levels(raw_text):
 
