@@ -13,6 +13,7 @@ charset-normalizer==2.0.7
 click==8.0.3
 cymem==2.0.6
 Cython==0.29.24
+de-core-news-sm @ https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-3.1.0/de_core_news_sm-3.1.0-py3-none-any.whl
 fastapi==0.70.0
 fire==0.4.0
 frozendict==2.0.7
@@ -55,7 +56,9 @@ spacy==3.1.4
 spacy-legacy==3.0.8
 spacy-pkuseg==0.0.28
 srsly==2.4.2
+srt==3.5.0
 starlette==0.16.0
+subsceneAPI==0.2
 termcolor==1.1.0
 thinc==8.0.12
 tomli==1.2.2
