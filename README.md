@@ -23,16 +23,18 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 
 - [ ]  `vocab.py` extraction du vocab à partir d'une string.
     - [ ] déterminer seuils de "rareté" et des mots à ignorer (trop communs)
-- [x]  Script qui scrape un site et récupère le contenu texte, avec option « récursive »
+    - [ ] résoudre le problème du sentencizer qui fait n'importe quoi
 - [ ]  Implémenter la **traduction** des mots et des phrases
-- [x]  Faire l’API qui prend le lien  et renvoie un json
-    - [ ] Ajouter possibilité d'envoyer un fichier srt
+- [ ] Ajouter possibilité d'envoyer un fichier srt dans l'API
 - [ ]  S’occuper de l’interface HTML
     - [ ] Ajouter boutons "Only show rare words"
     - [ ] Traduire interface en anglais
     - [ ] Intégrer nouvelles infos au tableau des résultats
-- [ ]  créer flashcards Anki
+- [ ]  créer flashcards Anki$
+- [x]  Script qui scrape un site et récupère le contenu texte, avec option « récursive »
 - [x]  Ajouter support Youtube
+- [x]  Faire l’API qui prend le lien  et renvoie un json
+
 
 
 **Idées d’amélioration**
