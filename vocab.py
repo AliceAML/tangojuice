@@ -133,7 +133,7 @@ def make_vocab(text, lang):
 if __name__ == "__main__":
     LANG = "de"
     text = scrape(
-        "https://www.tagesschau.de/inland/ampelparteien-reaktionen-101.html",
+        "https://www.tagesschau.de/ausland/amerika/usa-reisende-101.html",
         lang=LANG,
     )
     vocab = make_vocab(text, lang=LANG)
@@ -142,3 +142,6 @@ if __name__ == "__main__":
         print(word)
 
     # FIXME le sentencizer ça marche pas du tout sur les textes bruts...
+    # FIXME certaines expressions ne devraient pas être tokenisées, comme "New York" (surtout les entités nommées)
+    # FIXME problème de scraping, parfois on chope encore des bouts de code HTML inutiles
+    # ex : "Pfeil runter" sur "https://www.tagesschau.de/ausland/amerika/usa-reisende-101.html"
