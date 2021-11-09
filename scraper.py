@@ -13,7 +13,6 @@ MAX_NB_LINKS = 50
 
 def youtube_get_text(url: str, lang: str) -> str:
     video_id = parse_qs(urlparse(url).query)["v"][0]
-    print(video_id)
     transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=[lang])
     text_only = [elt["text"] for elt in transcript]
     return "\n".join(text_only)

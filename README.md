@@ -21,18 +21,25 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 
 ## To-do list
 
-- [ ]  Script python qui prend en entrée du texte brut et une langue et ressort une liste triée par niveau (débutant, intermédiaire, avancé) et par fréquence dans le texte, avec aussi les phrases exemples !
-    - [ ]  Idée : créer une classe Word avec des attributs frequence_rank, translation,examples, occurrences… ? Et une classe Vocabulary qui contient tous les words du texte ? Rangés dans les différentes catégories de niveau
-- [ ]  Script qui scrape un site et récupère le contenu texte, avec option « récursive »
-- [x]  Implémenter la **traduction** des mots et des phrases
-- [x]  Faire l’API qui prend le lien  et renvoie un json
-    - [ ] ajouter choix de langue à l'API
-- [ ]  créer flashcards Anki
+- [ ]  `vocab.py` extraction du vocab à partir d'une string.
+    - [ ] déterminer seuils de "rareté" et des mots à ignorer (trop communs)
+    - [ ] résoudre le problème du sentencizer qui fait n'importe quoi
+- [ ]  Implémenter la **traduction** des mots et des phrases
+- [ ] Ajouter possibilité d'envoyer un fichier srt dans l'API
 - [ ]  S’occuper de l’interface HTML
+    - [ ] Ajouter boutons "Only show rare words"
+    - [ ] Traduire interface en anglais
+    - [ ] Intégrer nouvelles infos au tableau des résultats
+- [ ]  créer flashcards Anki$
+- [x]  Script qui scrape un site et récupère le contenu texte, avec option « récursive »
 - [x]  Ajouter support Youtube
-- [ ]  Ajouter support Netflix  -> pas trouvé d'API qu'on peut utiliser. Autre idée = utiliser une API qui permet de récupérer les sous-titres pour n'importe quel film ou série. Problème : là uassi, pas de bonne API. Une idée plus simple serait de permettre l'envoi d'un fichier .srt par l'utilisateur.
+- [x]  Faire l’API qui prend le lien  et renvoie un json
+
+
 
 **Idées d’amélioration**
 
-- [ ]  Ne pas juste renvoyer des mots…
-- [ ]  Renvoyer les informations morphosyntaxiques (avec SpaCy)
+- [x]  Ne pas juste renvoyer des mots…
+- [x]  Renvoyer les informations morphosyntaxiques (avec SpaCy)
+- [ ]  Gestion des entités nommées
+- [ ]  Gestion des "cognates" (mots apparentés)
