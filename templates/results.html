@@ -8,8 +8,13 @@
     </tr>
     {% for item in words %}
     <tr>
-        <td>{{ item.text }}</td>
-        <td>{{ item.count }}</td>
+        <td>
+            <input type="checkbox">
+            {{ item.text }}
+        </td>
+        <td>
+            {{ item.count }}
+        </td>
     </tr>
     {% endfor %}
 </table>

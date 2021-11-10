@@ -40,7 +40,7 @@ async def index():
     tags=["Routes"],
 )
 async def scrape(
-    request: Request, url=Form(...), recursive=Form(default=False), inputLang=Form(...)
+    request: Request, url=Form(...), recursive=Form(default=False),  inputLang=Form(...)
 ):
     try:
         text = scraper.scrape(url, recursive=recursive, lang=inputLang)
