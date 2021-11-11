@@ -55,8 +55,6 @@ def scrape(url: str, lang, recursive=False) -> str:
 
         text = soup.get_text(separator=" ", strip=True)
 
-
-
         if recursive:
             links = [link["href"] for link in soup.find_all("a", attrs={"href": True})]
             inside_links = [  # limited to same netloc to limit nb
@@ -75,7 +73,9 @@ def scrape(url: str, lang, recursive=False) -> str:
 
 if __name__ == "__main__":
     text = scrape(
-        "https://cn.nytimes.com/business/20211029/china-coal-climate/", recursive=False, lang="en"
+        "https://cn.nytimes.com/business/20211029/china-coal-climate/",
+        recursive=False,
+        lang="en",
     )
     counts = {
         w: i

@@ -9,6 +9,7 @@ from collections import Counter, namedtuple
 import youtube_transcript_api._errors
 
 import scraper
+import export_vocab
 
 app = FastAPI(
     title="TangoJuice",
@@ -40,7 +41,7 @@ async def index():
     tags=["Routes"],
 )
 async def scrape(
-    request: Request, url=Form(...), recursive=Form(default=False),  inputLang=Form(...)
+    request: Request, url=Form(...), recursive=Form(default=False), inputLang=Form(...)
 ):
     try:
         text = scraper.scrape(url, recursive=recursive, lang=inputLang)
@@ -56,6 +57,35 @@ async def scrape(
 
     return templates.TemplateResponse(
         "results.html", {"request": request, "words": words}
+    )
+
+
+@app.post(
+    "get selected vocab",
+    name="selected_vocab",
+    summary="preprocesses the selected vocab before flashcard selection",
+    tags=["Routes"],
+)
+async def selected_vocab(
+    request: Request,
+):
+
+    return templates.TemplateResponse(
+        "exported.html", {"request": request, "word_list": word_list}
+    )
+
+
+@app.post(
+    "/export_vocab",
+    name="export_vocab",
+    summary="exports the selected vocabulary (hopefully into flashcards)",
+    description="""if select all = true, will return the whole vocab""",
+    tags=["Routes"],
+)
+async def export_vocab(request: Request, word_list=Form(...)):
+
+    return templates.TemplateResponse(
+        "exported.html", {"request": request, "word_list": word_list}
     )
 
 

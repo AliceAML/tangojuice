@@ -10,7 +10,7 @@
     {% for item in words %}
     <tr>
         <td>
-            <input type="checkbox", id={{item}}>
+            <input type="checkbox", id={{item}, action="/export_vocab", }>
             {{ item.text }}
         </td>
         <td>
