@@ -18,7 +18,8 @@ RARE_WORD_THRESHOLD = 0.1e-2
 
 OPEN_CLASS_WORDS = ["ADJ", "ADV", "INTJ", "NOUN", "PROPN", "VERB"]
 
-MODELS = {
+# LOAD RESSOURCES EVERYTIME THE APP IS STARTED
+MODEL_NAMES = {
     "de": "de_core_news_sm",  # "de_dep_news_trf",
     "en": "en_core_web_sm",
     "fr": "fr_core_news_sm",
@@ -26,6 +27,24 @@ MODELS = {
     "no": "nb_core_news_sm",
     "zh": "zh_core_web_sm",
 }
+
+SPACY_MODELS = {}
+LANG_FREQUENCIES = {}
+for i, (lang, model) in enumerate(MODEL_NAMES.items()):
+    print(f"Load {model} SpaCy model ({i+1}/{len(MODEL_NAMES)})")
+    try:
+        SPACY_MODELS[lang] = spacy.load(model)
+    except Exception as e:
+        print(f"Could not load {model} model")
+        print(e)
+    print(f"Load {lang} frequency list")
+    try:
+        LANG_FREQUENCIES[lang] = json.load(
+            open(f"frequency_lists/{lang}_full.json", "r")
+        )
+    except Exception as e:
+        print(f"Could not load {lang} frequency list")
+        print(e)
 
 
 class Word:
@@ -121,12 +140,11 @@ def make_vocab(text, lang):
     # normalize apostrophes in text
     text = text.replace("’", "'")
 
-    print(f"Load {lang} frequency list")
-    lang_frequencies = json.load(open(f"frequency_lists/{lang}_full.json", "r"))
+    lang_frequencies = LANG_FREQUENCIES[lang]
+    nlp = SPACY_MODELS[lang]
+
     vocab = Vocabulary(lang_frequencies)
 
-    print(f"Load {MODELS[lang]} SpaCy model")
-    nlp = spacy.load(MODELS[lang])
     print("Parse text")
     doc = nlp(text)
     print("Extract vocabulary")

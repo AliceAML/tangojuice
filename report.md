@@ -17,6 +17,8 @@ Créer une application web qui extrait du vocabulaire d'un site web, texte ou fi
 Nous avons réalisé des points hebdomadaires lors desquels nous avons présenté notre avancement l'un à l'autre et intégré les nouveautés dans le code. Le code était partagé via un dossier sur GitHub. Nous tenions à jour une liste des tâches à réaliser dans un fichier .markdown dans notre dossier GitHub.
 
 ### Identification des problèmes
+- Comment sélectionner les mots à extraire ?
+- Comment accélérer le traitement du vocabulaire ? > charger les modèles spacy en amont, pas à chaque extraction ?
 
 ### Etapes du projet
 
