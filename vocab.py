@@ -118,6 +118,9 @@ class Vocabulary:
 
 
 def make_vocab(text, lang):
+    # normalize apostrophes in text
+    text = text.replace("’", "'")
+
     print(f"Load {lang} frequency list")
     lang_frequencies = json.load(open(f"frequency_lists/{lang}_full.json", "r"))
     vocab = Vocabulary(lang_frequencies)
