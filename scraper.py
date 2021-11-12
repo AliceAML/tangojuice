@@ -27,6 +27,13 @@ def is_youtube_video(url):
 
     return request.status_code == 200
 
+def get_text_from_srt(path):
+    text = ""
+    with open(path, "r", encoding="utf-8") as f:
+        parsed_srt = srt.parse(f.read())
+        text = "\n".join((line.content for line in parsed_srt))
+    return text
+
 
 def scrape(url: str, lang, recursive=False) -> str:
     """
