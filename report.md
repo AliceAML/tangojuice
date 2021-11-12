@@ -18,7 +18,7 @@ Nous avons réalisé des points hebdomadaires lors desquels nous avons présent�
 
 ### Identification des problèmes
 - Comment sélectionner les mots à extraire ?
-- Comment accélérer le traitement du vocabulaire ? > charger les modèles spacy en amont, pas à chaque extraction ?
+- Comment accélérer le traitement du vocabulaire ? > charger les modèles spacy en amont, pas à chaque extraction ? > memory exceeded sur Heroku :(. Créer différentes pages pour chaque langue dispo, charger juste les ressources pour la langue qu'on veut...
 
 ### Etapes du projet
 

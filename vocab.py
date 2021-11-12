@@ -29,23 +29,24 @@ MODEL_NAMES = {
     "zh": "zh_core_web_sm",
 }
 
-SPACY_MODELS = {}
-LANG_FREQUENCIES = {}
-for i, (lang, model) in enumerate(MODEL_NAMES.items()):
-    print(f"Load {model} SpaCy model ({i+1}/{len(MODEL_NAMES)})")
-    try:
-        SPACY_MODELS[lang] = spacy.load(model)
-    except Exception as e:
-        print(f"Could not load {model} model")
-        print(e)
-    print(f"Load {lang} frequency list")
-    try:
-        LANG_FREQUENCIES[lang] = json.load(
-            open(f"frequency_lists/{lang}_full.json", "r")
-        )
-    except Exception as e:
-        print(f"Could not load {lang} frequency list")
-        print(e)
+# good idea but... makes Heroku crash (limit exceeded)
+# SPACY_MODELS = {}
+# LANG_FREQUENCIES = {}
+# for i, (lang, model) in enumerate(MODEL_NAMES.items()):
+#     print(f"Load {model} SpaCy model ({i+1}/{len(MODEL_NAMES)})")
+#     try:
+#         SPACY_MODELS[lang] = spacy.load(model)
+#     except Exception as e:
+#         print(f"Could not load {model} model")
+#         print(e)
+#     print(f"Load {lang} frequency list")
+#     try:
+#         LANG_FREQUENCIES[lang] = json.load(
+#             open(f"frequency_lists/{lang}_full.json", "r")
+#         )
+#     except Exception as e:
+#         print(f"Could not load {lang} frequency list")
+#         print(e)
 
 
 def is_punct(word: str):
@@ -146,10 +147,12 @@ def make_vocab(text, lang):
     # normalize apostrophes in text
     text = text.replace("’", "'")
 
-    lang_frequencies = LANG_FREQUENCIES[lang]
-    nlp = SPACY_MODELS[lang]
-
+    print(f"Load {lang} frequency list")
+    lang_frequencies = json.load(open(f"frequency_lists/{lang}_full.json", "r"))
     vocab = Vocabulary(lang_frequencies)
+
+    print(f"Load {MODEL_NAMES[lang]} SpaCy model")
+    nlp = spacy.load(MODEL_NAMES[lang])
 
     print("Parse text")
     doc = nlp(text)
