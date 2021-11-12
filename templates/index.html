@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="/scrape" method="POST">
+<form action="/scrape" method="POST" enctype="multipart/form-data">
     <div class="tabbed-area">
         <ul class="tabs group">
             <li><a href="#url_form">From link</a></li>
@@ -24,10 +24,9 @@
                 <textarea id="text" name="text" rows="5" cols="50"></textarea>
             </div>
             <div id="file_form" class="tab">
-                <label for="text">Extract vocabulary from this subtitle file (.srt only)</label>
+                <label for="srtfile">Extract vocabulary from this subtitle file (.srt only)</label>
                 <br />
-                <input type="file" id="file" name="file" accept=".srt" />
-
+                <input type="file" name="srtfile" accept=".srt" />
             </div>
         </div>
     </div>

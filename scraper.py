@@ -1,9 +1,11 @@
 """Extract text from urls (webpage or youtube video)"""
 
+from tempfile import SpooledTemporaryFile
 import requests
 from bs4 import BeautifulSoup
 from collections import Counter
 from urllib.parse import urljoin, urlparse, parse_qs
+import srt
 
 import youtube_transcript_api._errors
 from youtube_transcript_api import YouTubeTranscriptApi
@@ -27,11 +29,10 @@ def is_youtube_video(url):
 
     return request.status_code == 200
 
-def get_text_from_srt(path):
-    text = ""
-    with open(path, "r", encoding="utf-8") as f:
-        parsed_srt = srt.parse(f.read())
-        text = "\n".join((line.content for line in parsed_srt))
+
+def get_text_from_srt(srt_content: str):
+    parsed_srt = srt.parse(srt_content)
+    text = "\n".join((line.content for line in parsed_srt))
     return text
 
 

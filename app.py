@@ -1,4 +1,5 @@
-from fastapi import FastAPI, Form, HTTPException, Request
+from fastapi import FastAPI, Form, HTTPException, Request, File
+from fastapi.datastructures import UploadFile
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -42,21 +43,25 @@ async def scrape(
     request: Request,
     url=Form(default=None),
     text=Form(default=None),
-    file=Form(default=None),
+    srtfile: UploadFile = File(default=None),
     recursive=Form(default=False),
     inputLang=Form(...),
     outputLang=Form(...),
     nbWords=Form(...),
 ):
-    print(text)
     if url != None:
         try:
             text = scraper.scrape(url, recursive=recursive, lang=inputLang)
         except youtube_transcript_api._errors.NoTranscriptFound as e:
             raise HTTPException(status_code=404, detail="Subtitles not found")
-    elif file != None:
-        text = await file.read()
+    elif srtfile != None:
+        print(f"{srtfile=}")  # FIXME this is just a string !
+        # print(file.file)
+        srt: bytes = await srtfile.read()  # TODO extract from srt file
+        srt = srt.decode("utf-8")
+        text = scraper.get_text_from_srt(srt)
 
+    print(text)
     voc = vocab.make_vocab(text, lang=inputLang)
     vocList = voc.extract_vocab(nb_words=int(nbWords))
     return templates.TemplateResponse(
