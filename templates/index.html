@@ -57,7 +57,11 @@
         <label for="nbWords">Number of words to extract</label>
         <select id="nbWords" name="nbWords" type="number">
             {% for i in range(1, 21) %}
+            {% if i*5 == 25 %}
+            <option value="{{ i * 5 }}" selected>{{ i * 5 }}</option>
+            {% else %}
             <option value="{{ i * 5 }}">{{ i * 5 }}</option>
+            {% endif %}
             {% endfor %}
         </select>
     </div>
