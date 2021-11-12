@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table>
+    <tr>
+        <th>Words</th>
+        <th>POS</th>
+        <th>Occurences</th>
+    </tr>
+    {% for word in words %}
+    <tr>
+        <td>{{ word.lemme }}</td>
+        <td>{{ word.pos }}</td>
+        <td>{{ word.doc_freq }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

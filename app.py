@@ -5,8 +5,9 @@ from fastapi.templating import Jinja2Templates
 
 # https://fastapi.tiangolo.com/advanced/templates/
 
-from collections import Counter, namedtuple
+from collections import Counter, defaultdict, namedtuple
 import youtube_transcript_api._errors
+import vocab
 
 import scraper
 
@@ -18,17 +19,15 @@ app = FastAPI(
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+
 templates = Jinja2Templates(directory="templates")
 
 
-@app.get(
-    "/",
-    name="Index",
-)
-async def index():
+@app.get("/", name="Index", description="Homepage")
+async def index(request: Request):
     with open("templates/index.html", "r") as f:
         index = f.read()
-    return HTMLResponse(index)
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 @app.post(
@@ -40,22 +39,28 @@ async def index():
     tags=["Routes"],
 )
 async def scrape(
-    request: Request, url=Form(...), recursive=Form(default=False), inputLang=Form(...)
+    request: Request,
+    url=Form(default=None),
+    text=Form(default=None),
+    file=Form(default=None),
+    recursive=Form(default=False),
+    inputLang=Form(...),
+    outputLang=Form(...),
+    nbWords=Form(...),
 ):
-    try:
-        text = scraper.scrape(url, recursive=recursive, lang=inputLang)
-    except youtube_transcript_api._errors.NoTranscriptFound as e:
-        raise HTTPException(status_code=404, detail="Subtitles not found")
+    print(text)
+    if url != None:
+        try:
+            text = scraper.scrape(url, recursive=recursive, lang=inputLang)
+        except youtube_transcript_api._errors.NoTranscriptFound as e:
+            raise HTTPException(status_code=404, detail="Subtitles not found")
+    elif file != None:
+        text = await file.read()
 
-    Word = namedtuple("Word", ("text", "count"))
-    words = [
-        Word(w, i)
-        for w, i in sorted(Counter(text.split()).items(), key=lambda x: -x[1])
-        if i > 1
-    ]
-
+    voc = vocab.make_vocab(text, lang=inputLang)
+    vocList = voc.extract_vocab(nb_words=int(nbWords))
     return templates.TemplateResponse(
-        "results.html", {"request": request, "words": words}
+        "results_words.html", {"request": request, "words": vocList}
     )
 
 

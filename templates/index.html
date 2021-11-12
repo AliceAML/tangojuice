@@ -1,26 +1,38 @@
-<!DOCTYPE html>
-<html lang="fr">
+{% extends "base.html" %}
 
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>TangoJuice</title>
-    <link rel="icon" type="image/x-icon" href="../static/images/beverage_box.png">
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'> -->
-</head>
+{% block content %}
+<form action="/scrape" method="POST">
+    <div class="tabbed-area">
+        <ul class="tabs group">
+            <li><a href="#url_form">From link</a></li>
+            <li><a href="#text_form">From text</a></li>
+            <li><a href="#file_form">From .srt file</a></li>
+        </ul>
+        <div class="box-wrap">
+            <div id="url_form" class="tab">
+                <label for="url">Scrape this url</label>
+                <br />
+                <input id="url" name="url" type="url"></input>
+                <br />
+                <label for="recursive">Recursive</label>
+                <br />
+                <input type="checkbox" id="recursive" name="recursive" value="true">
+            </div>
+            <div id="text_form" class="tab">
+                <label for="text">Extract vocabulary from this text</label>
+                <br />
+                <textarea id="text" name="text" rows="5" cols="50"></textarea>
+            </div>
+            <div id="file_form" class="tab">
+                <label for="text">Extract vocabulary from this subtitle file (.srt only)</label>
+                <br />
+                <input type="file" id="file" name="file" accept=".srt" />
 
-<body>
-    <h1>TangoJuice</h1>
-    <p>Délicieux extracteur de vocabulaire</p>
+            </div>
+        </div>
+    </div>
 
-    <form action="/scrape" method="POST">
-        <label for="url">Url à scraper</label>
-        <input id="url" name="url" type="url"></input>
-        <button type="submit">Scrape</button>
-        <br />
-        <label for="recursive">Recursive</label>
-        <input type="checkbox" id="recursive" name="recursive" value="true">
+    <div id="inputLangdiv">
         <label for="inputLang">Langue de la source</label>
         <select id="inputLang" name="inputLang">
             <!-- TODO automatiser cette liste à partir de la base de données -->
@@ -29,6 +41,9 @@
             <option value="fr">Français</option>
             <option value="ja">Japonais</option>
         </select>
+    </div>
+
+    <div id="outputLangdiv">
         <label for="outputLang">Langue de la traduction</label>
         <select id="outputLang" name="outputLang">
             <!-- Ici mettre toutes les langues de Google Translate ! -->
@@ -37,6 +52,18 @@
             <option>Français</option>
             <option>Japonais</option>
         </select>
-    </form>
+    </div>
 
-</html>
+    <div id="nbWordsdiv">
+        <label for="nbWords">Number of words to extract</label>
+        <select id="nbWords" name="nbWords" type="number">
+            {% for i in range(1, 21) %}
+            <option value="{{ i * 5 }}">{{ i * 5 }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div id="extractButton">
+        <button type="submit">Extract</button>
+    </div>
+</form>
+{% endblock %}
