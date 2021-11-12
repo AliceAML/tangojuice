@@ -65,7 +65,6 @@ def scrape(url: str, lang, recursive=False) -> str:
 
         if recursive:
             links = [link["href"] for link in soup.find_all("a", attrs={"href": True})]
-
             inside_links = [  # limited to same netloc to limit nb
                 urljoin(url, link)
                 for link in links
@@ -77,13 +76,14 @@ def scrape(url: str, lang, recursive=False) -> str:
                     text += scrape(link, lang=lang)
                 except requests.exceptions.InvalidSchema as e:
                     print(e)
-
     return text
 
 
 if __name__ == "__main__":
     text = scrape(
-        "https://www.youtube.com/watch?v=cQl6jUjFjp4&t=26s", recursive=False, lang="en"
+        "https://cn.nytimes.com/business/20211029/china-coal-climate/",
+        recursive=False,
+        lang="en",
     )
     counts = {
         w: i

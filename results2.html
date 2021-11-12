@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/scrape" method="POST">
+<table>
+    <tr>
+        <th>Mots</th>
+        <th>Occurences</th>
+    </tr>
+    {% for item in words %}
+    <tr>
+        <td>
+            <input type="checkbox", id={{item}, action="/export_vocab", }>
+            {{ item.text }}
+        </td>
+        <td>
+            {{ item.count }}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</form>
+{% endblock %}

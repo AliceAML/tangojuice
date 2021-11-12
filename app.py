@@ -11,6 +11,7 @@ import youtube_transcript_api._errors
 import vocab
 
 import scraper
+import export_vocab
 
 app = FastAPI(
     title="TangoJuice",
@@ -66,6 +67,35 @@ async def scrape(
     vocList = voc.extract_vocab(nb_words=int(nbWords))
     return templates.TemplateResponse(
         "results_words.html", {"request": request, "words": vocList}
+    )
+
+
+@app.post(
+    "get selected vocab",
+    name="selected_vocab",
+    summary="preprocesses the selected vocab before flashcard selection",
+    tags=["Routes"],
+)
+async def selected_vocab(
+    request: Request,
+):
+
+    return templates.TemplateResponse(
+        "exported.html", {"request": request, "word_list": word_list}
+    )
+
+
+@app.post(
+    "/export_vocab",
+    name="export_vocab",
+    summary="exports the selected vocabulary (hopefully into flashcards)",
+    description="""if select all = true, will return the whole vocab""",
+    tags=["Routes"],
+)
+async def export_vocab(request: Request, word_list=Form(...)):
+
+    return templates.TemplateResponse(
+        "exported.html", {"request": request, "word_list": word_list}
     )
 
 

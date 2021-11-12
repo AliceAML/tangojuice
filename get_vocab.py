@@ -34,7 +34,6 @@ with open("hskHanziList.json", "r") as istream:
     hsk_voc = json.load(istream)
 
 
-
 def squeeze_all_from_url(url):
     html = requests.get(url)
     # insert a try except
@@ -87,11 +86,12 @@ def get_hsk_level(character):
     return 7
 
 
-'''
+"""
 input: raw text (str)
 out: dict of dict. 1st Key: character  2nd keys frequency, level, translations
 
-'''
+"""
+
 
 def infos_and_levels(raw_text):
 

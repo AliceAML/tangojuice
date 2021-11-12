@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<div>Sélectionner le vocabulaire que vous souhaitez exporter</div>
 <table>
     <tr>
         <th>Mots</th>
@@ -8,9 +10,23 @@
     </tr>
     {% for item in words %}
     <tr>
-        <td>{{ item.text }}</td>
-        <td>{{ item.count }}</td>
+        <td>
+            <input type="checkbox", name="word",  id="{{item.text}}">
+            <label for="{{item.text}}">{{ item.text }}</label>
+        </td>
+        <td>
+            {{ item.count }}
+        </td>
     </tr>
     {% endfor %}
 </table>
+<button type="submit" onclick="askConfirmation()">Validate Selection</button>
+<p id="confirmation"></p>
+<script src="confirmation_and_processing.js"></script>
+<div><p id="output"></p></div>
+<input type="submit", name="Generate",  id="generate_flaschards"><br>
+
+
+
+
 {% endblock %}
