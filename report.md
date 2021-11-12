@@ -28,7 +28,11 @@ Nous avons ensuite progressivement amélioré ces trois volets de notre projet a
 
 Modèle / Vue / Controlleur ?
 
+Utilisation des API
+
 ## Résultats
+
+Prendre des exemples de sites / textes / sous-titres et analyser les résultats
 
 ## Discussion
 
