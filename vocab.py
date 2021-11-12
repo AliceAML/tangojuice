@@ -4,6 +4,7 @@ Extract complex Word objects from a string
 import itertools
 import json
 import spacy
+from string import punctuation
 
 from scraper import scrape
 
@@ -45,6 +46,10 @@ for i, (lang, model) in enumerate(MODEL_NAMES.items()):
     except Exception as e:
         print(f"Could not load {lang} frequency list")
         print(e)
+
+
+def is_punct(word: str):
+    return all(c in punctuation for c in word)
 
 
 class Word:
@@ -104,6 +109,7 @@ class Vocabulary:
                 # TODO rejecter toutes les POS fermées ?
                 or word.pos_ not in OPEN_CLASS_WORDS
                 # complete list : https://universaldependencies.org/u/pos/
+                or is_punct(word.text)
             ):
                 continue
             elif key in self.words:
