@@ -50,12 +50,13 @@ async def scrape(
     outputLang=Form(...),
     nbWords=Form(...),
 ):
+    # FIXME la logique est nulle ici !
     if url != None:
         try:
             text = scraper.scrape(url, recursive=recursive, lang=inputLang)
         except youtube_transcript_api._errors.NoTranscriptFound as e:
             raise HTTPException(status_code=404, detail="Subtitles not found")
-    elif srtfile != None:
+    elif text == None:
         print(f"{srtfile=}")  # FIXME this is just a string !
         # print(file.file)
         srt: bytes = await srtfile.read()  # TODO extract from srt file
