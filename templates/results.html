@@ -1,32 +1,42 @@
 {% extends "base.html" %}
-
 {% block content %}
-
-<div>Sélectionner le vocabulaire que vous souhaitez exporter</div>
+<div>Select the vocab you want to extract</div>
 <table>
-    <tr>
-        <th>Mots</th>
-        <th>Occurences</th>
-    </tr>
-    {% for item in words %}
-    <tr>
-        <td>
-            <input type="checkbox", name="word",  id="{{item.text}}">
-            <label for="{{item.text}}">{{ item.text }}</label>
-        </td>
-        <td>
-            {{ item.count }}
-        </td>
-    </tr>
-    {% endfor %}
+   <tr>
+      <th>Mots</th>
+      <th>Occurences</th>
+   </tr>
+   {% for item in words %}
+   <tr>
+      <td>
+         <input type="checkbox", name="cb_word",  id="{{item.text}}">
+         <label for="{{item.text}}">{{ item.text }}</label>
+      </td>
+      <td>
+         {{ item.count }}
+      </td>
+   </tr>
+   {% endfor %}
 </table>
-<button type="submit" onclick="askConfirmation()">Validate Selection</button>
+<button type="submit" id="select_words">Validate Selection</button>
 <p id="confirmation"></p>
-<script src="confirmation_and_processing.js"></script>
-<div><p id="output"></p></div>
+<script>
+   document.querySelector("#select_words").onsubmit = async (event) =>
+{
+   var selected_words = [];
+   var checkboxes = document.getElementsByName("cb_word");
+   for (const checkbox of checkboxes) {
+      if (checkbox.checked) {
+            selected_words.push(checkbox.id);
+        }
+    }
+   var fc_nb = selected_words.length;
+   const confirm_message = "Do you want to generate " + fc_nb + " flashcards?";
+   document.getElementById("confirmation").innerHTML = confirm_message;
+}
+</script>
+<div>
+   <p id="output"></p>
+</div>
 <input type="submit", name="Generate",  id="generate_flaschards"><br>
-
-
-
-
 {% endblock %}

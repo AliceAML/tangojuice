@@ -38,6 +38,7 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 - [x]  Ajouter support Youtube
 - [x]  Faire l’API qui prend le lien  et renvoie un json
 - [x] Ajouter un input text (pour extraire voc à partir d'un copier-coller)
+- [ ] 
 
 
 

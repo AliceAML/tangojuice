@@ -70,7 +70,6 @@ async def scrape(
         "results_words.html", {"request": request, "words": vocList}
     )
 
-
 @app.post(
     "get selected vocab",
     name="selected_vocab",
