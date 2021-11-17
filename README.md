@@ -24,22 +24,33 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 ## To-do list
 
 - [ ]  `vocab.py` extraction du vocab à partir d'une string.
+    - [ ] refaire les json de fréquence avec les vraies fréquences relatives
+    - [ ] ou trouver des [fréquences](https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists) par lemmes pour fr, en, de, no ?
     - [ ] déterminer seuils de "rareté" et des mots à ignorer (trop communs)
+    - [ ] ajouter un attribut "formes"
     - [ ] résoudre le problème du sentencizer qui fait n'importe quoi
+    - [ ]  Gestion des "cognates" (mots apparentés)
+    - [ ] Transcription en pinyin / romaji
+    - [ ] si c'est pas kanji, ça dégage
 - [ ] Implémenter la **traduction** des mots et des phrases
-- [ ] Ajouter possibilité d'envoyer un fichier srt dans l'API
+    - [ ] Trouver une API pour les mots (Wikitonary?)
+    - [ ] Pour les phrases, implémenter avec `googletrans`
 - [ ]  S’occuper de l’interface HTML
     - [ ] Ajouter boutons "Only show rare words"
     - [ ] Traduire interface en anglais
+    - [ ] Ajouter les options de langues à la page index. Pour la langue de traduction, automatiser. Astuce : `from googletrans import LANGUAGES`
+    - [ ] Ajouter menu d'export qui se déplace avec le scroll
     - [ ] Intégrer nouvelles infos au tableau des résultats
     - [x] Copier les *tabs* de https://validator.w3.org/#validate_by_input
-- [ ]  créer flashcards Anki$
+- [ ]  créer flashcards Anki
+    - [ ] sélection des mots
+    - [ ] création d'un fichier de flashcards
+    - [ ] upload du fichier
+- [x] Ajouter possibilité d'envoyer un fichier srt dans l'API
 - [x]  Script qui scrape un site et récupère le contenu texte, avec option « récursive »
 - [x]  Ajouter support Youtube
 - [x]  Faire l’API qui prend le lien  et renvoie un json
 - [x] Ajouter un input text (pour extraire voc à partir d'un copier-coller)
-
-
 
 
 **Idées d’amélioration**
@@ -47,4 +58,3 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 - [x]  Ne pas juste renvoyer des mots…
 - [x]  Renvoyer les informations morphosyntaxiques (avec SpaCy)
 - [ ]  Gestion des entités nommées
-- [ ]  Gestion des "cognates" (mots apparentés)

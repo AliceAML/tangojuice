@@ -32,6 +32,8 @@ Modèle / Vue / Controlleur ?
 
 Utilisation des API
 
+Hébergement sur Heroku
+
 ## Résultats
 
 Prendre des exemples de sites / textes / sous-titres et analyser les résultats
