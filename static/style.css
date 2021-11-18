@@ -23,6 +23,7 @@
     background: #ccc;
 }
 
+
 .group:after {
     visibility: hidden;
     display: block;

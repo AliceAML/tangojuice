@@ -18,10 +18,10 @@
    </tr>
    {% endfor %}
 </table>
-<button type="submit" id="select_words">Validate Selection</button>
+<button type="submit" id="select_words_validate">Validate Selection</button>
 <p id="confirmation"></p>
 <script>
-   document.querySelector("#select_words").onsubmit = async (event) =>
+   document.querySelector("#select_words_validate").onsubmit = async (event) =>
 {
    var selected_words = [];
    var checkboxes = document.getElementsByName("cb_word");

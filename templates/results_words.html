@@ -9,10 +9,34 @@
     </tr>
     {% for word in words %}
     <tr>
-        <td>{{ word.lemme }}</td>
+
+        <td>
+            <input type="checkbox", name="cb_word",  id="{{word.lemme}}">
+            <label for="{{word.lemme}}">{{ word.lemme }}</label>
+
+        </td>
         <td>{{ word.pos }}</td>
         <td>{{ word.doc_freq }}</td>
     </tr>
     {% endfor %}
 </table>
+<button type="submit" id="select_words_validate">Validate Selection 'ajouter dynamiquement le nb de mots sélectionnés</button>
+<p id="confirmation"></p>
+
+<script>
+
+   document.querySelector("#select_words_validate").onsubmit = async (event) =>
+{
+   let selected_words = [];
+   let checkboxes = document.getElementsByName("cb_word");
+   for (const checkbox of checkboxes) {
+      if (checkbox.checked) {
+            selected_words.push(checkbox.id);
+        }
+    }
+   let fc_nb = selected_words.length;
+   const confirm_message = "Do you want to generate " + fc_nb + " flashcards?";
+   document.getElementById("confirmation").innerHTML = confirm_message;
+}
+</script>
 {% endblock %}
