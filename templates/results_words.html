@@ -11,7 +11,7 @@
     <tr>
 
         <td>
-            <input type="checkbox", name="cb_word",  id="{{word.lemme}}">
+            <input type="checkbox", name="cb_word", onchange="modifySubmit(this)" id="{{word.lemme}}">
             <label for="{{word.lemme}}">{{ word.lemme }}</label>
 
         </td>
@@ -20,12 +20,29 @@
     </tr>
     {% endfor %}
 </table>
-<button type="submit" id="select_words_validate">Validate Selection 'ajouter dynamiquement le nb de mots sélectionnés</button>
+
+<div id = "select_words_validate"> </div>
 <p id="confirmation"></p>
 
 <script>
 
-   document.querySelector("#select_words_validate").onsubmit = async (event) =>
+   let nb_selected = 0
+   modifySubmit(checkbox){
+   if(checkbox.checked == true){
+    nb_selected += 1
+    }
+   else{
+    nb_selected -= 1
+    }
+   if (document.querySelector("#submit_select") == null){
+   document.querySelector("#select_words_validate").insertAdjacentHTML("afterbegin", "<button type='submit' id='submit_select'> Validate Selection (' + nb_selected + 'words) </button>')
+   } else{
+   document.querySelector("#submit_select").innerHTML = " Validate Selection? (" + nb_selected + " words)"
+
+   }
+   }
+
+   document.querySelector("#submit_select").onsubmit = async (event) =>
 {
    let selected_words = [];
    let checkboxes = document.getElementsByName("cb_word");
@@ -34,8 +51,8 @@
             selected_words.push(checkbox.id);
         }
     }
-   let fc_nb = selected_words.length;
-   const confirm_message = "Do you want to generate " + fc_nb + " flashcards?";
+
+   const confirm_message = "Do you want to generate " + nb_selected ©+ " flashcards?";
    document.getElementById("confirmation").innerHTML = confirm_message;
 }
 </script>
