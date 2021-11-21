@@ -7,14 +7,34 @@
     display: inline;
 }
 
-button[name="validateSelect"] {
+label[name="validateSelect"] {
     position: fixed;
-    bottom: 10px;
+    bottom: 35px;
     right: 600px;
     text-align: center;
-    background-color: #4CAF50;
+    background-color: #BA55D3;
     display: inline-block;
     font-size: 16px;
+    cursor: pointer;
+}
+button[name="extract_txt"] {
+    position: fixed;
+    bottom: 10px;
+    right: 800px;
+    text-align: center;
+    background-color: #DDA0DD;
+    display: inline-block;
+    font-size: 10px;
+    cursor: pointer;
+}
+button[name="extract_anki"] {
+    position: fixed;
+    bottom: 10px;
+    right: 500px;
+    text-align: center;
+    background-color: #DDA0DD;
+    display: inline-block;
+    font-size: 10px;
     cursor: pointer;
 }
 

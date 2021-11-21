@@ -11,7 +11,7 @@
     <tr>
 
         <td>
-            <input type="checkbox", name="cb_word", onchange="modifySubmit(this)" id="{{word.lemme}}">
+            <input type="checkbox", name="cb_word" id="{{word.lemme}}">
             <label for="{{word.lemme}}">{{ word.lemme }}</label>
 
         </td>
@@ -23,7 +23,9 @@
 
 
 <p id="confirmation"></p>
-<button type = 'submit' id = 'submit_select' onsumbit = 'askConfirmation()' name = 'validateSelect'></button>
+<div><label id = 'submit_select' onsumbit = 'askConfirmation()' name = 'validateSelect'></label></div>
+<button type = 'submit' id = 'extract_txt' onsumbit = 'extract_txt()' name = 'extract_txt'></button>
+<button type = 'submit' id = 'extract_anki' onsumbit = 'extract_anki()' name = 'extract_anki'></button>
 
 <script>
   let nb_selected = 0
@@ -38,6 +40,8 @@
     log(nb_selected + 'lol')
     }
    document.querySelector("#submit_select").innerHTML = " Validate Selection? (" + nb_selected + " words)"
+   document.querySelector("#extract_txt").innerHTML = "Generate and download flaschards "
+   document.querySelector("#extract_anki").innerHTML = "Generate and download regular vocab list in text file "
    }
 
 
@@ -51,7 +55,7 @@
         }
     }
 
-   const confirm_message = "Do you want to generate " + nb_selected + " flashcards?";
+   const confirm_message =  nb_selected + " words selected";
    document.getElementById("confirmation").innerHTML = confirm_message;
 }
 </script>
