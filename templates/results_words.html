@@ -21,28 +21,27 @@
     {% endfor %}
 </table>
 
-<div id = "select_words_validate"> </div>
+
 <p id="confirmation"></p>
+<button type = 'submit' id = 'submit_select' onsumbit = 'askConfirmation()'></button>
 
 <script>
-
-   let nb_selected = 0
-   modifySubmit(checkbox){
-   if(checkbox.checked == true){
+  let nb_selected = 0
+  let table = document.querySelector('table')
+  table.onchange = function(event) {
+  let target = event.target // where was the click?
+  if(target.checked == true){
     nb_selected += 1
     }
    else{
     nb_selected -= 1
+    log(nb_selected + 'lol')
     }
-   if (document.querySelector("#submit_select") == null){
-   document.querySelector("#select_words_validate").insertAdjacentHTML("afterbegin", "<button type='submit' id='submit_select'> Validate Selection (' + nb_selected + 'words) </button>')
-   } else{
    document.querySelector("#submit_select").innerHTML = " Validate Selection? (" + nb_selected + " words)"
-
-   }
    }
 
-   document.querySelector("#submit_select").onsubmit = async (event) =>
+
+   function askConfirmation()
 {
    let selected_words = [];
    let checkboxes = document.getElementsByName("cb_word");
@@ -52,7 +51,7 @@
         }
     }
 
-   const confirm_message = "Do you want to generate " + nb_selected ©+ " flashcards?";
+   const confirm_message = "Do you want to generate " + nb_selected + " flashcards?";
    document.getElementById("confirmation").innerHTML = confirm_message;
 }
 </script>

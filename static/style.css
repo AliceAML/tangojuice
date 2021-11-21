@@ -7,7 +7,7 @@
     display: inline;
 }
 
-#select_words_validate {
+.submit_select {
     position: fixed;
     bottom: 100px;
     right: 300px;
