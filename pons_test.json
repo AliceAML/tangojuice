@@ -1,0 +1,79 @@
+[
+    {
+        "lang": "de",
+        "hits": [
+            {
+                "type": "entry",
+                "opendict": false,
+                "roms": [
+                    {
+                        "headword": "H_CDMBB_au_CDMBE_s",
+                        "headword_full": "H<span class=\"cdmb\">au</span>s <span class=\"flexion\">&lt;-es, \u0336\u0308\u2007er&gt;</span> <span class=\"wordclass\"><acronym title=\"\u540d\u8bcd\">\u540d\u8bcd</acronym></span> <span class=\"genus\"><acronym title=\"\u4e2d\u6027\">nt</acronym></span>",
+                        "wordclass": "\u540d\u8bcd",
+                        "arabs": [
+                            {
+                                "header": "",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"headword\">Haus</strong>",
+                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u623f\u5c4b</span></span> <span class=\"zpinyin\"><span class=\"pyu\">f\u00e1ngw\u016b</span></span> , <span class=\"zphrase\"><span class=\"zhu\">\u623f\u5b50</span></span> <span class=\"zpinyin\"><span class=\"pyu\">f\u00e1ngzi</span></span> , <span class=\"zphrase\"><span class=\"zhu\">\u4f4f\u5b85</span></span> <span class=\"zpinyin\"><span class=\"pyu\">zh\u00f9zh\u00e1i</span></span>"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">Haus</strong>",
+                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u5bb6</span></span> <span class=\"zpinyin\"><span class=\"pyu\">ji\u0101</span></span> , <span class=\"zphrase\"><span class=\"zhu\">\u5bb6\u56ed</span></span> <span class=\"zpinyin\"><span class=\"pyu\">ji\u0101yu\u00e1n</span></span>"
+                                    },
+                                    {
+                                        "source": "<span class=\"idiom_proverb\">nach <strong class=\"tilde\">Hause</strong> gehen</span>",
+                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u56de\u5bb6</span></span>"
+                                    },
+                                    {
+                                        "source": "<span class=\"idiom_proverb\">zu <strong class=\"tilde\">Hause</strong> sein</span>",
+                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u5728</span><span class=\"zhu\">\u5bb6</span></span>"
+                                    },
+                                    {
+                                        "source": "<span class=\"idiom_proverb\">au\u00dfer <strong class=\"tilde\">Haus(e)</strong> sein</span>",
+                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u5916\u51fa</span></span>"
+                                    },
+                                    {
+                                        "source": "<span class=\"idiom_proverb\">au\u00dfer <strong class=\"tilde\">Haus(e)</strong> essen</span>",
+                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u5728\u5916\u7528\u9910</span></span>"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "entry",
+                "opendict": false,
+                "roms": [
+                    {
+                        "headword": "h_CDMBB_au_CDMBE_sen",
+                        "headword_full": "h<span class=\"cdmb\">au</span>sen <span class=\"wordclass\"><acronym title=\"\u52a8\u8bcd\">\u52a8\u8bcd</acronym></span> <span class=\"verbclass\"><acronym title=\"\u4e0d\u53ca\u7269\u52a8\u8bcd\">\u4e0d\u53ca\u7269\u52a8\u8bcd</acronym></span>",
+                        "wordclass": "\u4e0d\u53ca\u7269\u52a8\u8bcd",
+                        "arabs": [
+                            {
+                                "header": "",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"headword\">hausen</strong>",
+                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u6816\u8eab</span></span> <span class=\"zpinyin\"><span class=\"pyu\">q\u012bsh\u0113n</span></span> , <span class=\"zphrase\"><span class=\"zhu\">\u5b89\u8eab</span></span> <span class=\"zpinyin\"><span class=\"pyu\">\u0101nsh\u0113n</span></span>"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">hausen</strong>",
+                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u4f4f</span></span> <span class=\"zpinyin\"><span class=\"pyu\">zh\u00f9</span></span> , <span class=\"zphrase\"><span class=\"zhu\">\u5c45\u4f4f</span></span> <span class=\"zpinyin\"><span class=\"pyu\">j\u016bzh\u00f9</span></span>"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">hausen</strong>",
+                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u4e25\u91cd</span><span class=\"zhu\">\u7834\u574f</span></span> <span class=\"zpinyin\"><span class=\"pyu\">y\u00e1nzh\u00f2ng</span> <span class=\"pyu\">p\u00f2hu\u00e0i</span></span> , <span class=\"zphrase\"><span class=\"zhu\">\u6bc1\u574f</span></span> <span class=\"zpinyin\"><span class=\"pyu\">hu\u01d0hu\u00e0i</span></span> , <span class=\"zphrase\"><span class=\"zhu\">\u7cdf\u8e4b</span></span> <span class=\"zpinyin\"><span class=\"pyu\">z\u0101ot\u00e0</span></span>"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
