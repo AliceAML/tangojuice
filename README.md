@@ -24,7 +24,7 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 ## To-do list
 
 - [ ]  `vocab.py` extraction du vocab à partir d'une string.
-    - [ ] refaire les json de fréquence avec les vraies fréquences relatives
+    - [x] refaire les json de fréquence avec les vraies fréquences relatives
     - [ ] ou trouver des [fréquences](https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists) par lemmes pour fr, en, de, no ?
     - [ ] déterminer seuils de "rareté" et des mots à ignorer (trop communs)
     - [ ] ajouter un attribut "formes"
