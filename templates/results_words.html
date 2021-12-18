@@ -6,12 +6,14 @@
         <th>Words</th>
         <th>POS</th>
         <th>Occurences</th>
+        <th>Translation</th>
     </tr>
     {% for word in words %}
     <tr>
         <td>{{ word.lemme }}</td>
         <td>{{ word.pos }}</td>
         <td>{{ word.doc_freq }}</td>
+        <td>{{ word.trad }}</td>
     </tr>
     {% endfor %}
 </table>

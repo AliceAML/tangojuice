@@ -7,6 +7,7 @@ import spacy
 from string import punctuation
 
 from scraper import scrape
+from translate import translate
 
 # les "fréquences relatives" sont calculées par rapport au mot le plus fréquent
 # car on n'a pas le nb de tokens du corpus utilisé
@@ -61,19 +62,21 @@ class Word:
 
     newid = itertools.count()  # count nb of word objects
 
-    def __init__(self, lemme, pos, lang_frequencies: dict):
+    def __init__(self, lemme, forme, pos, lang_frequencies: dict):
         self.id = next(Word.newid)
         self.lemme = lemme
+        self.forms = {forme}
         self.pos = pos
         self.occurrences = []
-        self.lang_freq = lang_frequencies.get(lemme, 0)
+        self.lang_freq = lang_frequencies.get(forme, 0)
         # FIXME c'est un problème de prendre seulement la fréquence du lemme...
         self.doc_freq = 0
 
-    def add_occurrence(self, sentence: str):
+    def add_occurrence(self, forme, sentence: str):
         """
         Add an occurrence to the word.
         """
+        self.forms.add(forme)
         self.occurrences.append(sentence)
         self.doc_freq += 1
 
@@ -88,9 +91,11 @@ class Word:
 
 
 class Vocabulary:
-    def __init__(self, lang_frequencies: dict):
+    def __init__(self, input_lang, output_lang, lang_frequencies: dict):
         self.lang_frequencies = lang_frequencies
         self.words = {}
+        self.input_lang = input_lang
+        self.output_lang = output_lang
 
     def add_word(self, word):
         self.words[word.lemme] = word
@@ -110,14 +115,16 @@ class Vocabulary:
                 # TODO rejecter toutes les POS fermées ?
                 or word.pos_ not in OPEN_CLASS_WORDS
                 # complete list : https://universaldependencies.org/u/pos/
-                or is_punct(word.text)
+                or is_punct(word.text)  # FIXME retirer tout ce qui est 100% pas alpha
             ):
                 continue
             elif key in self.words:
                 self.words[key].add_occurrence(sentence.text)
             else:
-                self.words[key] = Word(word.lemma_, word.pos_, self.lang_frequencies)
-                self.words[key].add_occurrence(sentence.text)
+                self.words[key] = Word(
+                    word.lemma_, word.norm_, word.pos_, self.lang_frequencies
+                )
+                self.words[key].add_occurrence(word.norm_, sentence.text)
 
     def __str__(self) -> str:
         return "\n".join(str(word) for word in self.words.values() if word.doc_freq > 1)
@@ -134,25 +141,25 @@ class Vocabulary:
             word_list = (word for word in self.words.values() if word.is_rare())
         else:
             word_list = self.words.values()
-        # ajouter un premier tri par inverse de lang_freq ?
-
+        # tri par fréquence relative lang
         word_list = sorted(word_list, key=lambda word: word.lang_freq, reverse=False)
+        # tri par fréquence doc + slice inverse
+        word_list = sorted(word_list, key=lambda word: word.doc_freq, reverse=True)
+        word_list = word_list[:nb_words]
+        # TRADUIRE LES MOTS
+        return word_list
 
-        return sorted(word_list, key=lambda word: word.doc_freq, reverse=True)[
-            :nb_words
-        ]
 
-
-def make_vocab(text, lang):
+def make_vocab(text, input_lang, output_lang):
     # normalize apostrophes in text
     text = text.replace("’", "'")
 
-    print(f"Load {lang} frequency list")
-    lang_frequencies = json.load(open(f"frequency_lists/{lang}_full.json", "r"))
-    vocab = Vocabulary(lang_frequencies)
+    print(f"Load {input_lang} frequency list")
+    lang_frequencies = json.load(open(f"frequency_lists/{input_lang}_full.json", "r"))
+    vocab = Vocabulary(input_lang, output_lang, lang_frequencies)
 
-    print(f"Load {MODEL_NAMES[lang]} SpaCy model")
-    nlp = spacy.load(MODEL_NAMES[lang])
+    print(f"Load {MODEL_NAMES[input_lang]} SpaCy model")
+    nlp = spacy.load(MODEL_NAMES[input_lang])
 
     print("Parse text")
     doc = nlp(text)
@@ -177,7 +184,7 @@ The price of the room is 650€/month(All utilities included) with 1 month depos
 (Pictures of this can be provided separately- the furniture is not the one in the pictures)
 Please send a DM with some info about yourself. We will be arranging either in-person meetings or video calls in the coming days.
     """
-    vocab = make_vocab(text, lang=LANG)
+    vocab = make_vocab(text, input_lang=LANG)
     selected_vocab = vocab.extract_vocab(nb_words=20, onlyRareWords=False)
     for word in selected_vocab:
         print(word)

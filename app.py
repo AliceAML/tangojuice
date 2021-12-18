@@ -64,7 +64,7 @@ async def scrape(
         text = scraper.get_text_from_srt(srt)
 
     print(text)
-    voc = vocab.make_vocab(text, lang=inputLang)
+    voc = vocab.make_vocab(text, input_lang=inputLang, output_lang=outputLang)
     vocList = voc.extract_vocab(nb_words=int(nbWords))
     return templates.TemplateResponse(
         "results_words.html", {"request": request, "words": vocList}
