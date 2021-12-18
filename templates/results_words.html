@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+<form action="/anki" method="GET">
+    <button type="submit">Get Anki Deck</button>
+</form>
 <table>
     <tr>
         <th>Words</th>
@@ -12,7 +15,7 @@
     <tr>
 
         <td>
-            <input type="checkbox", name="cb_word" id="{{word.lemme}}">
+            <input type="checkbox" , name="cb_word" id="{{word.lemme}}">
             <label for="{{word.lemme}}">{{ word.lemme }}</label>
 
         </td>
@@ -25,40 +28,39 @@
 
 
 <p id="confirmation"></p>
-<div><label id = 'submit_select' onsumbit = 'askConfirmation()' name = 'validateSelect'></label></div>
-<button type = 'submit' id = 'extract_txt' onsumbit = 'extract_txt()' name = 'extract_txt'></button>
-<button type = 'submit' id = 'extract_anki' onsumbit = 'extract_anki()' name = 'extract_anki'></button>
+<div><label id='submit_select' onsumbit='askConfirmation()' name='validateSelect'></label></div>
+<button type='submit' id='extract_txt' onsumbit='extract_txt()' name='extract_txt'></button>
+<button type='submit' id='extract_anki' onsumbit='extract_anki()' name='extract_anki'></button>
 
 <script>
-  let nb_selected = 0
-  let table = document.querySelector('table')
-  table.onchange = function(event) {
-  let target = event.target // where was the click?
-  if(target.checked == true){
-    nb_selected += 1
-    }
-   else{
-    nb_selected -= 1
-    log(nb_selected + 'lol')
-    }
-   document.querySelector("#submit_select").innerHTML = " Validate Selection? (" + nb_selected + " words)"
-   document.querySelector("#extract_txt").innerHTML = "Generate and download flaschards "
-   document.querySelector("#extract_anki").innerHTML = "Generate and download regular vocab list in text file "
-   }
-
-
-   function askConfirmation()
-{
-   let selected_words = [];
-   let checkboxes = document.getElementsByName("cb_word");
-   for (const checkbox of checkboxes) {
-      if (checkbox.checked) {
-            selected_words.push(checkbox.id);
+    let nb_selected = 0
+    let table = document.querySelector('table')
+    table.onchange = function (event) {
+        let target = event.target // where was the click?
+        if (target.checked == true) {
+            nb_selected += 1
         }
+        else {
+            nb_selected -= 1
+            log(nb_selected + 'lol')
+        }
+        document.querySelector("#submit_select").innerHTML = " Validate Selection? (" + nb_selected + " words)"
+        document.querySelector("#extract_txt").innerHTML = "Generate and download flaschards "
+        document.querySelector("#extract_anki").innerHTML = "Generate and download regular vocab list in text file "
     }
 
-   const confirm_message =  nb_selected + " words selected";
-   document.getElementById("confirmation").innerHTML = confirm_message;
-}
+
+    function askConfirmation() {
+        let selected_words = [];
+        let checkboxes = document.getElementsByName("cb_word");
+        for (const checkbox of checkboxes) {
+            if (checkbox.checked) {
+                selected_words.push(checkbox.id);
+            }
+        }
+
+        const confirm_message = nb_selected + " words selected";
+        document.getElementById("confirmation").innerHTML = confirm_message;
+    }
 </script>
 {% endblock %}

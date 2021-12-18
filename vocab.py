@@ -71,6 +71,7 @@ class Word:
         self.lang_freq = lang_frequencies.get(forme, 0)
         # FIXME c'est un problème de prendre seulement la fréquence du lemme...
         self.doc_freq = 0
+        self.translation = ""
 
     def add_occurrence(self, forme, sentence: str):
         """
@@ -119,7 +120,7 @@ class Vocabulary:
             ):
                 continue
             elif key in self.words:
-                self.words[key].add_occurrence(sentence.text)
+                self.words[key].add_occurrence(forme=word.text, sentence=sentence.text)
             else:
                 self.words[key] = Word(
                     word.lemma_, word.norm_, word.pos_, self.lang_frequencies
@@ -129,7 +130,7 @@ class Vocabulary:
     def __str__(self) -> str:
         return "\n".join(str(word) for word in self.words.values() if word.doc_freq > 1)
 
-    def extract_vocab(self, nb_words=None, onlyRareWords: bool = False):
+    def extract_vocab(self, nb_words=None, onlyRareWords: bool = False) -> list[Word]:
         """
         Return a list of nb_words most frequent words.
         """
@@ -184,11 +185,10 @@ The price of the room is 650€/month(All utilities included) with 1 month depos
 (Pictures of this can be provided separately- the furniture is not the one in the pictures)
 Please send a DM with some info about yourself. We will be arranging either in-person meetings or video calls in the coming days.
     """
-    vocab = make_vocab(text, input_lang=LANG)
+    vocab = make_vocab(text, input_lang=LANG, output_lang="FR")
     selected_vocab = vocab.extract_vocab(nb_words=20, onlyRareWords=False)
     for word in selected_vocab:
         print(word)
-
     # FIXME le sentencizer ça marche pas du tout sur les textes bruts...
     # FIXME certaines expressions ne devraient pas être tokenisées, comme "New York" (surtout les entités nommées)
     # FIXME problème de scraping, parfois on chope encore des bouts de code HTML inutiles

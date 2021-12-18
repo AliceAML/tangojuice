@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Form, HTTPException, Request, File
 from fastapi.datastructures import UploadFile
 from fastapi.responses import HTMLResponse
+from fastapi.responses import StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -12,6 +13,7 @@ import vocab
 
 import scraper
 import export_vocab
+from anki import generate_anki_cards
 
 app = FastAPI(
     title="TangoJuice",
@@ -50,7 +52,7 @@ async def scrape(
     outputLang=Form(...),
     nbWords=Form(...),
 ):
-    # FIXME la logique est nulle ici !
+    # FIXME la logique est nulle ici ! problème : et si il y a une url, un text et un srtfile ?
     if url != None:
         try:
             text = scraper.scrape(url, recursive=recursive, lang=inputLang)
@@ -69,6 +71,7 @@ async def scrape(
     return templates.TemplateResponse(
         "results_words.html", {"request": request, "words": vocList}
     )
+
 
 @app.post(
     "get selected vocab",
@@ -97,6 +100,46 @@ async def export_vocab(request: Request, word_list=Form(...)):
     return templates.TemplateResponse(
         "exported.html", {"request": request, "word_list": word_list}
     )
+
+
+@app.post(
+    "/anki",
+    name="download_anki",
+    summary="downloads the selected vocabulary in anki format",
+)
+# source: https://stackoverflow.com/a/61910803
+async def download_anki(
+    request: Request,
+    url=Form(default=None),
+    text=Form(default=None),
+    srtfile: UploadFile = File(default=None),
+    recursive=Form(default=False),
+    inputLang=Form(...),
+    outputLang=Form(...),
+    nbWords=Form(...),
+):
+    # temporary fix: copied /scrape - use this on index page. In the future: use this on results page by getting data from database
+    if url != None:
+        try:
+            text = scraper.scrape(url, recursive=recursive, lang=inputLang)
+        except youtube_transcript_api._errors.NoTranscriptFound as e:
+            raise HTTPException(status_code=404, detail="Subtitles not found")
+    elif text == None:
+        print(f"{srtfile=}")  # FIXME this is just a string !
+        # print(file.file)
+        srt: bytes = await srtfile.read()  # TODO extract from srt file
+        srt = srt.decode("utf-8")
+        text = scraper.get_text_from_srt(srt)
+
+    print(text)
+    voc = vocab.make_vocab(text, input_lang=inputLang, output_lang=outputLang)
+    vocList = voc.extract_vocab(nb_words=int(nbWords))
+    stream_anki = generate_anki_cards(vocList, title="Tango Juice deck")
+    response = StreamingResponse(iter([stream_anki.getvalue()]), media_type="apkg")
+
+    response.headers["Content-Disposition"] = "attachment; filename=tangojuice.apkg"
+
+    return response
 
 
 """

@@ -25,13 +25,15 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 
 - [ ]  `vocab.py` extraction du vocab à partir d'une string.
     - [x] refaire les json de fréquence avec les vraies fréquences relatives
+    - [ ] ajouter fréquence par lemme (mais lemmatisation de la liste de mot via SpaCy, pas sûre de la qualité...)
     - [ ] ou trouver des [fréquences](https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists) par lemmes pour fr, en, de, no ?
     - [ ] déterminer seuils de "rareté" et des mots à ignorer (trop communs)
-    - [ ] ajouter un attribut "formes"
+    - [ ] ajouter un attribut "formes" - pourquoi déjà ? pour comptabiliser la fréquence des lemmes plutôt que des formes ?
     - [ ] résoudre le problème du sentencizer qui fait n'importe quoi
     - [ ]  Gestion des "cognates" (mots apparentés)
     - [ ] Transcription en pinyin / romaji
     - [ ] si c'est pas kanji, ça dégage
+- [ ] Create a database that holds the extracted words. Should we store it forever or empty it after a while?
 - [ ] Implémenter la **traduction** des mots et des phrases
     - [ ] Trouver une API pour les mots (Wikitonary?)
     - [ ] Pour les phrases, implémenter avec `googletrans`
@@ -43,8 +45,9 @@ Language learning web app that extracts the vocabulary from a webpage or a video
     - [ ] Intégrer nouvelles infos au tableau des résultats
     - [x] Copier les *tabs* de https://validator.w3.org/#validate_by_input
 - [ ]  créer flashcards Anki
+    En attendant d'avoir une base de données pour pouvoir récupérer les mots déjà extraits/sélectionnés, je l'ai ajouté comme une alternative sur la page d'accueil.
     - [ ] sélection des mots
-    - [ ] création d'un fichier de flashcards
+    - [x] création d'un fichier de flashcards
     - [ ] upload du fichier
 - [x] Ajouter possibilité d'envoyer un fichier srt dans l'API
 - [x]  Script qui scrape un site et récupère le contenu texte, avec option « récursive »
