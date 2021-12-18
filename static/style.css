@@ -7,6 +7,37 @@
     display: inline;
 }
 
+label[name="validateSelect"] {
+    position: fixed;
+    bottom: 35px;
+    right: 600px;
+    text-align: center;
+    background-color: #BA55D3;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+button[name="extract_txt"] {
+    position: fixed;
+    bottom: 10px;
+    right: 800px;
+    text-align: center;
+    background-color: #DDA0DD;
+    display: inline-block;
+    font-size: 10px;
+    cursor: pointer;
+}
+button[name="extract_anki"] {
+    position: fixed;
+    bottom: 10px;
+    right: 500px;
+    text-align: center;
+    background-color: #DDA0DD;
+    display: inline-block;
+    font-size: 10px;
+    cursor: pointer;
+}
+
 .tabs li a {
     color: black;
     float: left;
@@ -22,6 +53,7 @@
 .tabs li a:hover {
     background: #ccc;
 }
+
 
 .group:after {
     visibility: hidden;

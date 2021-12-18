@@ -51,6 +51,8 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 - [x]  Ajouter support Youtube
 - [x]  Faire l’API qui prend le lien  et renvoie un json
 - [x] Ajouter un input text (pour extraire voc à partir d'un copier-coller)
+- [ ] Vérifier que l’utilisateur a bien mis la bonne langue (lui demander de vérifier)
+- [ ] Gérer la différence entre le chinois tradi (tw) et le chinois simplifié aka vérifier si spacy le fait
 
 
 **Idées d’amélioration**
