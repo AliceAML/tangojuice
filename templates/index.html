@@ -32,26 +32,28 @@
     </div>
 
     <div id="inputLangdiv">
-        <label for="inputLang">Langue de la source</label>
+        <label for="inputLang">Language of the document</label>
         <select id="inputLang" name="inputLang">
             <!-- TODO automatiser cette liste à partir de la base de données -->
-            <option value="de">Allemand</option>
-            <option value="en">Anglais</option>
-            <option value="fr">Français</option>
-            <option value="ja">Japonais</option>
+            <option value="de">German</option>
+            <option value="en">English</option>
+            <option value="fr">French</option>
+            <option value="ja">Japanese</option>
             <option value="zh">Mandarin</option>
             <option value="no">Norwegian</option>
         </select>
     </div>
 
     <div id="outputLangdiv">
-        <label for="outputLang">Langue de la traduction</label>
+        <label for="outputLang">Translation language</label>
         <select id="outputLang" name="outputLang">
-            <!-- Ici mettre toutes les langues de Google Translate ! -->
-            <option value="de">Allemand</option>
-            <option value="en">Anglais</option>
-            <option value="fr">Français</option>
-            <option value="ja">Japonais</option>
+            {% for item in output_languages %}
+            {% if item.code == "EN-US" %}
+            <option value="{{item.code}}" selected>{{item.name}}</option>
+            {% else %}
+            <option value="{{item.code}}">{{item.name}}</option>
+            {% endif %}
+            {% endfor %}
         </select>
     </div>
 
@@ -66,6 +68,10 @@
             {% endif %}
             {% endfor %}
         </select>
+    </div>
+    <div id="rareWordsOnly">
+        <label for="rareWordsOnly">Remove common words</label>
+        <input type="checkbox" id="rareWordsOnly" name="rareWordsOnly" value="true" checked>
     </div>
     <div id="extractButton">
         <button type="submit">Extract</button>
