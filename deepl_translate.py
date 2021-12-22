@@ -1,8 +1,9 @@
 import deepl
 
 from config import DEEPL_KEY
+import os
 
-translator = deepl.Translator(DEEPL_KEY)
+translator = deepl.Translator(os.getenv("DEEPL_KEY"))
 
 
 def translate(text, src, dest):
