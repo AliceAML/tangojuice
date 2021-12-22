@@ -12,8 +12,8 @@ import youtube_transcript_api._errors
 import vocab
 
 import scraper
-import export_vocab
 from anki import generate_anki_cards
+from deepl_translate import target_languages
 
 app = FastAPI(
     title="TangoJuice",
@@ -31,7 +31,9 @@ templates = Jinja2Templates(directory="templates")
 async def index(request: Request):
     with open("templates/index.html", "r") as f:
         index = f.read()
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(
+        "index.html", {"request": request, "output_languages": target_languages}
+    )
 
 
 @app.post(
@@ -45,30 +47,35 @@ async def index(request: Request):
 async def scrape(
     request: Request,
     url=Form(default=None),
-    text=Form(default=None),
+    text=Form(default=""),
     srtfile: UploadFile = File(default=None),
     recursive=Form(default=False),
     inputLang=Form(...),
     outputLang=Form(...),
     nbWords=Form(...),
+    rareWordsOnly=Form(default=False),
 ):
     # FIXME la logique est nulle ici ! problème : et si il y a une url, un text et un srtfile ?
     # FIXME
+
     if url != None:
+        print(f"Scraping page at {url}")
         try:
-            text = scraper.scrape(url, recursive=recursive, lang=inputLang)
+            text += scraper.scrape(url, recursive=recursive, lang=inputLang)
         except youtube_transcript_api._errors.NoTranscriptFound as e:
             raise HTTPException(status_code=404, detail="Subtitles not found")
-    elif text == None:
-        print(f"{srtfile=}")  # FIXME this is just a string !
+    if srtfile != None:
+        print(f"reading srt file {srtfile=}")
         # print(file.file)
         srt: bytes = await srtfile.read()  # TODO extract from srt file
         srt = srt.decode("utf-8")
-        text = scraper.get_text_from_srt(srt)
+        text += scraper.get_text_from_srt(srt)
 
     print(text)
-    voc = vocab.make_vocab(text, input_lang=inputLang, output_lang=outputLang)
-    vocList = voc.extract_vocab(nb_words=int(nbWords))
+    voc = vocab.make_vocab(
+        text, input_lang=inputLang.lower(), output_lang=outputLang.lower()
+    )
+    vocList = voc.extract_vocab(nb_words=int(nbWords), onlyRareWords=rareWordsOnly)
     return templates.TemplateResponse(
         "results_words.html", {"request": request, "words": vocList}
     )
@@ -112,29 +119,35 @@ async def export_vocab(request: Request, word_list=Form(...)):
 async def download_anki(
     request: Request,
     url=Form(default=None),
-    text=Form(default=None),
+    text=Form(default=""),
     srtfile: UploadFile = File(default=None),
     recursive=Form(default=False),
     inputLang=Form(...),
     outputLang=Form(...),
     nbWords=Form(...),
+    rareWordsOnly=Form(default=False),
 ):
-    # temporary fix: copied /scrape - use this on index page. In the future: use this on results page by getting data from database
+    # temporary fix: copied /scrape - use this on index page.
+    # In the future: use this on results page by getting data from __database__
+    print(text)
+    print(type(text))
+
     if url != None:
+        print(f"Scraping page at {url}")
         try:
-            text = scraper.scrape(url, recursive=recursive, lang=inputLang)
+            text += scraper.scrape(url, recursive=recursive, lang=inputLang)
         except youtube_transcript_api._errors.NoTranscriptFound as e:
             raise HTTPException(status_code=404, detail="Subtitles not found")
-    elif text == None:
-        print(f"{srtfile=}")  # FIXME this is just a string !
+    if srtfile != None:
+        print(f"reading srt file {srtfile=}")
         # print(file.file)
         srt: bytes = await srtfile.read()  # TODO extract from srt file
         srt = srt.decode("utf-8")
-        text = scraper.get_text_from_srt(srt)
+        text += scraper.get_text_from_srt(srt)
 
     print(text)
     voc = vocab.make_vocab(text, input_lang=inputLang, output_lang=outputLang)
-    vocList = voc.extract_vocab(nb_words=int(nbWords))
+    vocList = voc.extract_vocab(nb_words=int(nbWords), onlyRareWords=rareWordsOnly)
     stream_anki = generate_anki_cards(vocList, title="Tango Juice deck")
     response = StreamingResponse(iter([stream_anki.getvalue()]), media_type="apkg")
 
