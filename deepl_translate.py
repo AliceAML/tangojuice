@@ -1,6 +1,4 @@
 import deepl
-
-from config import DEEPL_KEY
 import os
 
 translator = deepl.Translator(os.getenv("DEEPL_KEY"))
