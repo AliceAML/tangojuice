@@ -16,7 +16,7 @@ from deepl_translate import translate
 # TODO déterminer seuils !!!
 # peuvent varier en fonction des langues
 STOPWORD_THRESHOLD = 1
-RARE_WORD_THRESHOLD = 0.1e-2
+RARE_WORD_THRESHOLD = 0.0005
 
 OPEN_CLASS_WORDS = ["ADJ", "ADV", "INTJ", "NOUN", "PROPN", "VERB"]
 
@@ -51,7 +51,7 @@ MODEL_NAMES = {
 
 
 def is_punct(word: str):
-    return all(c in punctuation for c in word)
+    return all(not c.isalpha() for c in word)
 
 
 class Word:
@@ -68,7 +68,7 @@ class Word:
         self.forms = {forme}
         self.pos = pos
         self.occurrences = []
-        self.lang_freq = lang_frequencies.get(forme, 0)
+        self.lang_freq = int(lang_frequencies.get(lemme, 0))
         # FIXME c'est un problème de prendre seulement la fréquence du lemme...
         self.doc_freq = 0
         self.translation = ""
@@ -97,6 +97,10 @@ class Vocabulary:
         self.words = {}
         self.input_lang = input_lang
         self.output_lang = output_lang
+
+    def __iter__(self):
+        for word in self.words.values():
+            yield word
 
     def add_word(self, word):
         self.words[word.lemme] = word
@@ -142,12 +146,13 @@ class Vocabulary:
             nb_words = len(self.words)  # default value = return all the words
 
         if onlyRareWords:
+            print(f"Only keep words with a frequency < {RARE_WORD_THRESHOLD}")
             word_list = (word for word in self.words.values() if word.is_rare())
         else:
             word_list = self.words.values()
-        # tri par fréquence relative lang
+        # tri par fréquence relative lang (ascendant)
         word_list = sorted(word_list, key=lambda word: word.lang_freq, reverse=False)
-        # tri par fréquence doc + slice inverse
+        # tri par fréquence doc (descendant)
         word_list = sorted(word_list, key=lambda word: word.doc_freq, reverse=True)
         word_list = word_list[:nb_words]
         # TRADUIRE LES MOTS
@@ -167,7 +172,9 @@ def make_vocab(text, input_lang, output_lang):
     text = text.replace("’", "'")
 
     print(f"Load {input_lang} frequency list")
-    lang_frequencies = json.load(open(f"frequency_lists/{input_lang}_full.json", "r"))
+    lang_frequencies = json.load(
+        open(f"frequency_lists/{input_lang}_full_lemmas.json", "r")
+    )
     vocab = Vocabulary(input_lang, output_lang, lang_frequencies)
 
     print(f"Load {MODEL_NAMES[input_lang]} SpaCy model")
@@ -197,7 +204,7 @@ The price of the room is 650€/month(All utilities included) with 1 month depos
 Please send a DM with some info about yourself. We will be arranging either in-person meetings or video calls in the coming days.
     """
     vocab = make_vocab(text, input_lang=LANG, output_lang="FR")
-    selected_vocab = vocab.extract_vocab(nb_words=20, onlyRareWords=False)
+    selected_vocab = vocab.extract_vocab(nb_words=20, onlyRareWords=True)
     for word in selected_vocab:
         print(word)
     # FIXME le sentencizer ça marche pas du tout sur les textes bruts...
