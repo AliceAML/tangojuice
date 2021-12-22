@@ -58,6 +58,10 @@ async def scrape(
     # FIXME la logique est nulle ici ! problème : et si il y a une url, un text et un srtfile ?
     # FIXME
 
+    if rareWordsOnly != False:
+        rareWordsOnly = True
+    print("rareWordsOnly", rareWordsOnly)
+
     if url != None:
         print(f"Scraping page at {url}")
         try:
