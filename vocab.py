@@ -175,7 +175,25 @@ def make_vocab(text, input_lang, output_lang):
     nlp = spacy.load(MODEL_NAMES[input_lang])
 
     print("Parse text")
-    doc = nlp(text)
+    try:
+        doc = nlp(text)
+    except Exception as e:
+        if "Input is too long" in e:
+            print(f"e\nTruncating the text and keeping the beginning.")
+            original_length = len(text)
+            max_length = 49149
+            byted = text.encode("utf-8")
+            while True:
+                i = 0
+                new_byted = byted[ : max_length - i]
+                try:
+                    text = new_byted.decode()
+                except UnicodeDecodeError:
+                    i += 1
+                break
+            print(f" we removed { (len(text)/original_length)*100 } % of the text")
+            doc = nlp(text)
+
     print("Extract vocabulary")
     for sent in doc.sents:
         vocab.process_sentence(sent)
