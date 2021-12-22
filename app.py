@@ -53,6 +53,7 @@ async def scrape(
     nbWords=Form(...),
 ):
     # FIXME la logique est nulle ici ! problème : et si il y a une url, un text et un srtfile ?
+    # FIXME
     if url != None:
         try:
             text = scraper.scrape(url, recursive=recursive, lang=inputLang)

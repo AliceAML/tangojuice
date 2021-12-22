@@ -7,7 +7,7 @@ import spacy
 from string import punctuation
 
 from scraper import scrape
-from translate import translate
+from deepl_translate import translate
 
 # les "fréquences relatives" sont calculées par rapport au mot le plus fréquent
 # car on n'a pas le nb de tokens du corpus utilisé
@@ -157,7 +157,6 @@ class Vocabulary:
                 word.translation = translate(
                     word.lemme, src=self.input_lang, dest=self.output_lang
                 )
-                print(word.translation)
             except Exception as e:
                 print("Could not translate word")
         return word_list

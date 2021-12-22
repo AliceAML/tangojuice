@@ -22,10 +22,11 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 * go to [localhost:8000](http://localhost:8000)
 
 ## To-do list
+- [ ] Utiliser tous les champs du formulaire pour le texte d'input
+- [ ] Tronquer le texte s'il est trop long et prévenir l'utilisateur
 - [ ] **PL** - Implémenter la **traduction** des mots et des phrases
-    - [ ] Trouver une API pour les mots (Wikitonary?) https://en.wiktionary.org/w/api.php
-    - [x] Test API PONS (mais qui ne marche pas du tout pour toutes les combinaisons de langues)
-    - [ ] Pour les phrases, implémenter avec `googletrans` > super unreliable!
+    - [x] Alice : utiliser API Deepl
+    - [ ] PL : essaye de scraper des dictionnaires
 - [ ] **Améliorer l'extraction** `vocab.py` extraction du vocab à partir d'une string.
     - [ ] utiliser la fréquence du lemme
     - [ ] déterminer seuils de "rareté" et des mots à ignorer (trop communs)
@@ -33,7 +34,8 @@ Language learning web app that extracts the vocabulary from a webpage or a video
     - [x] ajouter fréquence par lemme (mais lemmatisation de la liste de mot via SpaCy, pas sûre de la qualité...)
     - [ ] Transcription en pinyin / romaji
     - [ ] si c'est pas kanji, ça dégage
-- [ ] Create a database that holds the extracted words. Should we store it forever or empty it after a while?
+- [ ] **PL** - Create a database that holds the extracted words.
+    Should we store it forever or empty it after a while?
 - [ ]  S’occuper de l’interface HTML
     - [ ] Traduire interface en anglais
     - [ ] Mettre un peu de CSS pour que ça soit moins moche ?
