@@ -1,42 +1,481 @@
 [
     {
-        "lang": "de",
+        "lang": "fr",
         "hits": [
             {
                 "type": "entry",
                 "opendict": false,
                 "roms": [
                     {
-                        "headword": "H_CDMBB_au_CDMBE_s",
-                        "headword_full": "H<span class=\"cdmb\">au</span>s <span class=\"flexion\">&lt;-es, \u0336\u0308\u2007er&gt;</span> <span class=\"wordclass\"><acronym title=\"\u540d\u8bcd\">\u540d\u8bcd</acronym></span> <span class=\"genus\"><acronym title=\"\u4e2d\u6027\">nt</acronym></span>",
-                        "wordclass": "\u540d\u8bcd",
+                        "headword": "tomber",
+                        "headword_full": "tomber <span class=\"phonetics\">[t\u0254\u0342be]</span> <span class=\"wordclass\"><acronym title=\"Verb\">VERB</acronym></span> <span class=\"verbclass\"><acronym title=\"intransitives Verb\">intr</acronym></span> <span class=\"auxiliary_verb\">+\u00eatre</span>",
+                        "wordclass": "Intransitives Verb",
                         "arabs": [
                             {
-                                "header": "",
+                                "header": "1. tomber <span class=\"sense\">(chuter)</span>:",
                                 "translations": [
                                     {
-                                        "source": "<strong class=\"headword\">Haus</strong>",
-                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u623f\u5c4b</span></span> <span class=\"zpinyin\"><span class=\"pyu\">f\u00e1ngw\u016b</span></span> , <span class=\"zphrase\"><span class=\"zhu\">\u623f\u5b50</span></span> <span class=\"zpinyin\"><span class=\"pyu\">f\u00e1ngzi</span></span> , <span class=\"zphrase\"><span class=\"zhu\">\u4f4f\u5b85</span></span> <span class=\"zpinyin\"><span class=\"pyu\">zh\u00f9zh\u00e1i</span></span>"
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">personne:</span>",
+                                        "target": "[hin]fallen"
                                     },
                                     {
-                                        "source": "<strong class=\"headword\">Haus</strong>",
-                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u5bb6</span></span> <span class=\"zpinyin\"><span class=\"pyu\">ji\u0101</span></span> , <span class=\"zphrase\"><span class=\"zhu\">\u5bb6\u56ed</span></span> <span class=\"zpinyin\"><span class=\"pyu\">ji\u0101yu\u00e1n</span></span>"
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">animal:</span>",
+                                        "target": "st\u00fcrzen"
                                     },
                                     {
-                                        "source": "<span class=\"idiom_proverb\">nach <strong class=\"tilde\">Hause</strong> gehen</span>",
-                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u56de\u5bb6</span></span>"
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> en arri\u00e8re/en avant</span>",
+                                        "target": "nach hinten/nach vorne <span class=\"target\">[<span class=\"or\"><acronym title=\"oder\">o.</acronym></span> vorn\u00fcber]</span> fallen"
                                     },
                                     {
-                                        "source": "<span class=\"idiom_proverb\">zu <strong class=\"tilde\">Hause</strong> sein</span>",
-                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u5728</span><span class=\"zhu\">\u5bb6</span></span>"
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> dans les bras de <acronym title=\"quelqu'un\">qn</acronym></span>",
+                                        "target": "<acronym title=\"jemandem\">jdm</acronym> in die Arme fallen"
                                     },
                                     {
-                                        "source": "<span class=\"idiom_proverb\">au\u00dfer <strong class=\"tilde\">Haus(e)</strong> sein</span>",
-                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u5916\u51fa</span></span>"
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> sur le dos/les genoux</span>",
+                                        "target": "auf den R\u00fccken/die Knie fallen"
                                     },
                                     {
-                                        "source": "<span class=\"idiom_proverb\">au\u00dfer <strong class=\"tilde\">Haus(e)</strong> essen</span>",
-                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u5728\u5916\u7528\u9910</span></span>"
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> de bicyclette/d&#39;un arbre</span>",
+                                        "target": "vom Rad/von einem Baum fallen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> du troisi\u00e8me \u00e9tage</span>",
+                                        "target": "aus dem dritten Stock fallen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> [par terre]</span> <span class=\"subject\">personne, bouteille, chaise:</span>",
+                                        "target": "umfallen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> [par terre]</span> <span class=\"subject\">arbre, pile d&#39;objets, poteau:</span>",
+                                        "target": "umst\u00fcrzen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> [par terre]</span> <span class=\"subject\">\u00e9chafaudage:</span>",
+                                        "target": "einst\u00fcrzen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> [par terre]</span> <span class=\"subject\">branches, casseroles:</span>",
+                                        "target": "herunterfallen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\">se laisser <strong class=\"tilde\">tomber</strong></span>",
+                                        "target": "sich [hin]fallen lassen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\">se laisser <strong class=\"tilde\">tomber</strong> par terre</span>",
+                                        "target": "sich zu Boden fallen lassen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\">faire <strong class=\"tilde\">tomber</strong> <acronym title=\"quelqu'un\">qn</acronym></span>",
+                                        "target": "<acronym title=\"jemanden\">jdn</acronym> zu Fall bringen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\">faire <strong class=\"tilde\">tomber</strong> <acronym title=\"quelque chose\">qc</acronym></span>",
+                                        "target": "<acronym title=\"etwas\">etw</acronym> herunterwerfen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\">faire <strong class=\"tilde\">tomber</strong> le vase de la table</span>",
+                                        "target": "die Vase vom Tisch heruntersto\u00dfen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><acronym title=\"quelqu'un\">qn</acronym> fait/laisse <strong class=\"tilde\">tomber</strong> <acronym title=\"quelque chose\">qc</acronym></span>",
+                                        "target": "<acronym title=\"jemand\">jd</acronym> l\u00e4sst <acronym title=\"jemanden\">jdn</acronym>/<acronym title=\"etwas\">etw</acronym> fallen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><acronym title=\"quelqu'un\">qn</acronym> fait/laisse <strong class=\"tilde\">tomber</strong> <acronym title=\"quelque chose\">qc</acronym></span>",
+                                        "target": "<acronym title=\"etwas\">etw</acronym> f\u00e4llt <acronym title=\"jemandem\">jdm</acronym> herunter"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "2. tomber <span class=\"sense\">(glisser)</span> <span class=\"subject\">bretelle, pantalon</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong>",
+                                        "target": "herunterrutschen"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "3. tomber <span class=\"sense\">(s&#39;abattre)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> du ciel</span>",
+                                        "target": "vom Himmel fallen"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "4. tomber <span class=\"sense\">(\u00eatre affaibli)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> de fatigue/sommeil</span>",
+                                        "target": "vor Ersch\u00f6pfung/M\u00fcdigkeit <span class=\"case\"><acronym title=\"Dativ\">Dat</acronym></span> umfallen"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "5. tomber <span class=\"sense\">(se d\u00e9tacher)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">cheveux, dent:</span>",
+                                        "target": "ausfallen"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">feuille, masque:</span>",
+                                        "target": "fallen"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">fruit:</span>",
+                                        "target": "herunterfallen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\">faire <strong class=\"tilde\">tomber</strong> les olives de l&#39;arbre</span>",
+                                        "target": "die Oliven vom Baum herunterschlagen"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "6. tomber <span class=\"sense\">(arriver)</span> <span class=\"subject\">nouvelle, t\u00e9lex</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong>",
+                                        "target": "eintreffen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> un lundi</span>",
+                                        "target": "auf [einen] Montag fallen"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "7. tomber <span class=\"sense\">(descendre)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">nuit, soir:</span>",
+                                        "target": "hereinbrechen"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">neige, pluie, averse:</span>",
+                                        "target": "fallen"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">brouillard:</span>",
+                                        "target": "aufziehen"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">foudre:</span>",
+                                        "target": "einschlagen"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">foudre:</span>",
+                                        "target": "niederfahren"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"topic\"><acronym title=\"Theater\">THEAT</acronym></span> <span class=\"subject\">rideau:</span>",
+                                        "target": "fallen"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "8. tomber <span class=\"sense\">(\u00eatre vaincu)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong>",
+                                        "target": "fallen"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">dictateur, gouvernement:</span>",
+                                        "target": "gest\u00fcrzt werden"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">mur de Berlin, ville:</span>",
+                                        "target": "fallen"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">record:</span>",
+                                        "target": "gebrochen werden"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\">faire <strong class=\"tilde\">tomber</strong> <acronym title=\"quelqu'un\">qn</acronym>/<acronym title=\"quelque chose\">qc</acronym></span>",
+                                        "target": "<acronym title=\"jemanden\">jdn</acronym>/<acronym title=\"etwas\">etw</acronym> st\u00fcrzen"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "9. tomber <span class=\"topic\"><acronym title=\"Milit\u00e4r\">MILIT</acronym></span>:",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"sense\">(mourir)</span>",
+                                        "target": "fallen"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "10. tomber <span class=\"sense\">(baisser)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">vent:</span>",
+                                        "target": "sich legen"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">col\u00e8re:</span>",
+                                        "target": "nachlassen"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">conversation:</span>",
+                                        "target": "erlahmen"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">enthousiasme, exaltation:</span>",
+                                        "target": "nachlassen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> de/\u00e0 <acronym title=\"quelque chose\">qc</acronym></span> <span class=\"subject\">chiffre, indicateurs, monnaie:</span>",
+                                        "target": "um/auf <acronym title=\"etwas\">etw</acronym> <span class=\"case\"><acronym title=\"Akkusativ\">Akk</acronym></span> fallen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> de/\u00e0 <acronym title=\"quelque chose\">qc</acronym></span> <span class=\"subject\">nombre d&#39;adh\u00e9rents:</span>",
+                                        "target": "um/auf <acronym title=\"etwas\">etw</acronym> <span class=\"case\"><acronym title=\"Akkusativ\">Akk</acronym></span> sinken"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "11. tomber <span class=\"sense\">(dispara\u00eetre, \u00e9chouer)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">objection:</span>",
+                                        "target": "widerlegt sein/werden"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">obstacle:</span>",
+                                        "target": "beseitigt sein/werden"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">plan, projet:</span>",
+                                        "target": "fallen gelassen werden"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "12. tomber <span class=\"sense\">(pendre)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong>",
+                                        "target": "fallen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\">avoir les \u00e9paules qui tombent</span>",
+                                        "target": "h\u00e4ngende Schultern haben"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\">son manteau lui tombait jusqu&#39;aux talons</span>",
+                                        "target": "der Mantel reichte ihm/ihr bis zur Ferse"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\">bien/mal <strong class=\"tilde\">tomber</strong></span> <span class=\"subject\">v\u00eatement:</span>",
+                                        "target": "gut/schlecht fallen"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "13. tomber <span class=\"style\"><acronym title=\"umgangssprachlich\">ugs</acronym></span> <span class=\"sense\">(se retrouver)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> enceinte</span>",
+                                        "target": "schwanger werden"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> d&#39;accord</span>",
+                                        "target": "sich einig werden"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> en ruine</span>",
+                                        "target": "verfallen"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "14. tomber <span class=\"sense\">(\u00eatre pris)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> dans un pi\u00e8ge</span>",
+                                        "target": "in einen Hinterhalt geraten"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> aux mains de <acronym title=\"quelqu'un\">qn</acronym></span>",
+                                        "target": "<acronym title=\"jemandem\">jdm</acronym> in die H\u00e4nde fallen"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "15. tomber <span class=\"sense\">(\u00eatre entra\u00een\u00e9)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> dans l&#39;alcoolisme/la folie</span>",
+                                        "target": "dem Alkohol/Irrsinn verfallen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> dans l&#39;oubli</span>",
+                                        "target": "in Vergessenheit geraten"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "16. tomber <span class=\"sense\">(concerner par hasard)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> sur <acronym title=\"quelqu'un\">qn</acronym></span>",
+                                        "target": "<acronym title=\"jemanden\">jdn</acronym> treffen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> sur <acronym title=\"quelqu'un\">qn</acronym></span> <span class=\"subject\">sort:</span>",
+                                        "target": "auf <acronym title=\"jemanden\">jdn</acronym> fallen"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "17. tomber <span class=\"sense\">(rencontrer, arriver par hasard)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> sur un article</span>",
+                                        "target": "auf einen Artikel sto\u00dfen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> sur <acronym title=\"quelqu'un\">qn</acronym></span>",
+                                        "target": "<acronym title=\"jemanden\">jdn</acronym> [zuf\u00e4llig] treffen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> en plein repas</span>",
+                                        "target": "mitten ins Essen platzen"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "18. tomber <span class=\"sense\">(abandonner)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<span class=\"example\">laisser <strong class=\"tilde\">tomber</strong> un projet/une activit\u00e9</span>",
+                                        "target": "ein Projekt fallen lassen/eine T\u00e4tigkeit sein lassen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\">laisser <strong class=\"tilde\">tomber</strong> un ami</span>",
+                                        "target": "einen Freund im Stich lassen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\">laisser <strong class=\"tilde\">tomber</strong> un ami</span> <span class=\"sense\">(d\u00e9finitivement)</span>",
+                                        "target": "einen Freund fallen lassen"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "19. tomber <span class=\"topic\"><acronym title=\"Kartenspiele\">KARTEN</acronym></span>:",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"subject\">atout, carte:</span>",
+                                        "target": "fallen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\">faire <strong class=\"tilde\">tomber</strong> <acronym title=\"quelque chose\">qc</acronym></span>",
+                                        "target": "<acronym title=\"etwas\">etw</acronym> ziehen"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "20. tomber <span class=\"sense\">(se poser)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> sur <acronym title=\"quelqu'un\">qn</acronym>/<acronym title=\"quelque chose\">qc</acronym></span> <span class=\"subject\">conversation:</span>",
+                                        "target": "auf <acronym title=\"jemanden\">jdn</acronym>/<acronym title=\"etwas\">etw</acronym> kommen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> sur <acronym title=\"quelqu'un\">qn</acronym>/<acronym title=\"quelque chose\">qc</acronym></span> <span class=\"subject\">regard:</span>",
+                                        "target": "auf <acronym title=\"jemanden\">jdn</acronym>/<acronym title=\"etwas\">etw</acronym> fallen"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "21. tomber <span class=\"style\"><acronym title=\"umgangssprachlich\">ugs</acronym></span> <span class=\"sense\">(attaquer)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> sur <acronym title=\"quelqu'un\">qn</acronym></span>",
+                                        "target": "\u00fcber <acronym title=\"jemanden\">jdn</acronym> herfallen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\"><strong class=\"tilde\">tomber</strong> sur le dos [<span class=\"or\"><acronym title=\"ou\">ou</acronym></span> le paletot] [<span class=\"or\"><acronym title=\"ou\">ou</acronym></span> le r\u00e2ble] de <acronym title=\"quelqu'un\">qn</acronym></span>",
+                                        "target": "<acronym title=\"jemandem\">jdm</acronym> auf die Pelle r\u00fccken <span class=\"style\"><acronym title=\"umgangssprachlich\">ugs</acronym></span>"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "Wendungen:",
+                                "translations": [
+                                    {
+                                        "source": "<span class=\"idiom_proverb\">bien <strong class=\"tilde\">tomber</strong></span>",
+                                        "target": "gelegen kommen"
+                                    },
+                                    {
+                                        "source": "<span class=\"idiom_proverb\">bien <strong class=\"tilde\">tomber</strong></span>",
+                                        "target": "gerade recht kommen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\">\u00e7a tombe bien</span>",
+                                        "target": "das trifft sich gut"
+                                    },
+                                    {
+                                        "source": "<span class=\"idiom_proverb\">mal <strong class=\"tilde\">tomber</strong></span>",
+                                        "target": "ungelegen kommen"
+                                    },
+                                    {
+                                        "source": "<span class=\"example\">\u00e7a tombe mal</span>",
+                                        "target": "das trifft sich schlecht"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "headword": "tomber",
+                        "headword_full": "tomber <span class=\"phonetics\">[t\u0254\u0342be]</span> <span class=\"wordclass\"><acronym title=\"Verb\">VERB</acronym></span> <span class=\"verbclass\"><acronym title=\"transitives Verb\">trans</acronym></span> <span class=\"auxiliary_verb\">+avoir</span>",
+                        "wordclass": "Transitives Verb",
+                        "arabs": [
+                            {
+                                "header": "1. tomber:",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"topic\"><acronym title=\"Sport\">SPORT</acronym></span>",
+                                        "target": "legen"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"topic\"><acronym title=\"Sport\">SPORT</acronym></span>",
+                                        "target": "zu Fall bringen"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"topic\"><acronym title=\"Politik\">POL</acronym></span> <span class=\"style\"><acronym title=\"umgangssprachlich\">ugs</acronym></span>",
+                                        "target": "schlagen <span class=\"style\"><acronym title=\"umgangssprachlich\">ugs</acronym></span>"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "2. tomber <span class=\"style\"><acronym title=\"sehr umgangssprachlich\">ugs!</acronym></span> <span class=\"sense\">(s\u00e9duire)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"colloc\">(femme)</span>",
+                                        "target": "erobern"
+                                    }
+                                ]
+                            },
+                            {
+                                "header": "3. tomber <span class=\"style\"><acronym title=\"umgangssprachlich\">ugs</acronym></span> <span class=\"sense\">(se d\u00e9faire de)</span>:",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"colloc\">(cravate, veste, pantalon)</span>",
+                                        "target": "ablegen"
+                                    },
+                                    {
+                                        "source": "<strong class=\"headword\">tomber</strong> <span class=\"colloc\">(cravate, veste, pantalon)</span>",
+                                        "target": "ausziehen"
                                     }
                                 ]
                             }
@@ -49,24 +488,97 @@
                 "opendict": false,
                 "roms": [
                     {
-                        "headword": "h_CDMBB_au_CDMBE_sen",
-                        "headword_full": "h<span class=\"cdmb\">au</span>sen <span class=\"wordclass\"><acronym title=\"\u52a8\u8bcd\">\u52a8\u8bcd</acronym></span> <span class=\"verbclass\"><acronym title=\"\u4e0d\u53ca\u7269\u52a8\u8bcd\">\u4e0d\u53ca\u7269\u52a8\u8bcd</acronym></span>",
-                        "wordclass": "\u4e0d\u53ca\u7269\u52a8\u8bcd",
+                        "headword": "tomber",
+                        "headword_full": "tomber ",
                         "arabs": [
                             {
                                 "header": "",
                                 "translations": [
                                     {
-                                        "source": "<strong class=\"headword\">hausen</strong>",
-                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u6816\u8eab</span></span> <span class=\"zpinyin\"><span class=\"pyu\">q\u012bsh\u0113n</span></span> , <span class=\"zphrase\"><span class=\"zhu\">\u5b89\u8eab</span></span> <span class=\"zpinyin\"><span class=\"pyu\">\u0101nsh\u0113n</span></span>"
+                                        "source": "<span class=\"idiom_proverb\">tomber volontairement [<span class=\"or\"><acronym title=\"ou\">ou</acronym></span> se laisser tomber] </span>",
+                                        "target": "eine Schwalbe machen, sich fallen lassen"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "entry",
+                "opendict": true,
+                "roms": [
+                    {
+                        "headword": "tomber",
+                        "headword_full": "tomber <span class=\"wordclass\"><acronym title=\"Verb\">VERB</acronym></span>",
+                        "wordclass": "Verb",
+                        "arabs": [
+                            {
+                                "header": "",
+                                "translations": [
+                                    {
+                                        "source": "je tombe de l&#39;armoire! <span class=\"sense\">(\u00eatre tr\u00e8s \u00e9tonn\u00e9)</span> <span class=\"style\"><acronym title=\"umgangssprachlich\">ugs</acronym></span>",
+                                        "target": "Das haut mich um! <span class=\"style\"><acronym title=\"salopp\">sl</acronym></span>"
                                     },
                                     {
-                                        "source": "<strong class=\"headword\">hausen</strong>",
-                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u4f4f</span></span> <span class=\"zpinyin\"><span class=\"pyu\">zh\u00f9</span></span> , <span class=\"zphrase\"><span class=\"zhu\">\u5c45\u4f4f</span></span> <span class=\"zpinyin\"><span class=\"pyu\">j\u016bzh\u00f9</span></span>"
+                                        "source": "je tombe de l&#39;armoire! <span class=\"sense\">(\u00eatre tr\u00e8s \u00e9tonn\u00e9)</span> <span class=\"style\"><acronym title=\"umgangssprachlich\">ugs</acronym></span>",
+                                        "target": "Das haut mich vom Hocker! <span class=\"style\"><acronym title=\"umgangssprachlich\">ugs</acronym></span>"
                                     },
                                     {
-                                        "source": "<strong class=\"headword\">hausen</strong>",
-                                        "target": "<span class=\"zphrase\"><span class=\"zhu\">\u4e25\u91cd</span><span class=\"zhu\">\u7834\u574f</span></span> <span class=\"zpinyin\"><span class=\"pyu\">y\u00e1nzh\u00f2ng</span> <span class=\"pyu\">p\u00f2hu\u00e0i</span></span> , <span class=\"zphrase\"><span class=\"zhu\">\u6bc1\u574f</span></span> <span class=\"zpinyin\"><span class=\"pyu\">hu\u01d0hu\u00e0i</span></span> , <span class=\"zphrase\"><span class=\"zhu\">\u7cdf\u8e4b</span></span> <span class=\"zpinyin\"><span class=\"pyu\">z\u0101ot\u00e0</span></span>"
+                                        "source": "laisse <strong class=\"tilde\">tomber!</strong>",
+                                        "target": "Lass mal gut sein!"
+                                    },
+                                    {
+                                        "source": "on ne tombe pas toujours directement sur la personne \u00e0 qui on souhaite parler <span class=\"sense\">(t\u00e9l\u00e9phoner)</span>",
+                                        "target": "man hat nicht immer gleich die Person am Apparat, mit der man sprechen m\u00f6chte"
+                                    },
+                                    {
+                                        "source": "c&#39;est un livre qui me tombe des mains",
+                                        "target": "das ist ein Buch, bei dem ich glatt einschlafe"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "entry",
+                "opendict": true,
+                "roms": [
+                    {
+                        "headword": "tomber",
+                        "headword_full": "tomber <span class=\"wordclass\"><acronym title=\"Verb\">VERB</acronym></span>",
+                        "wordclass": "Verb",
+                        "arabs": [
+                            {
+                                "header": "",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"tilde\">tomber</strong> sous les yeux de <acronym title=\"quelqu'un\">qn</acronym> <span class=\"sense\">(voir <acronym title=\"quelque chose\">qc</acronym> par hasard)</span> <span class=\"style\"><acronym title=\"bildlich, \u00fcbertragen, figurativ\">\u00fcbtr</acronym></span>",
+                                        "target": "<acronym title=\"jemandem\">jdm</acronym> zuf\u00e4llig unter die Augen kommen <span class=\"style\"><acronym title=\"bildlich, \u00fcbertragen, figurativ\">\u00fcbtr</acronym></span>"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "entry",
+                "opendict": true,
+                "roms": [
+                    {
+                        "headword": "tomber",
+                        "headword_full": "tomber <span class=\"wordclass\"><acronym title=\"Verb\">VERB</acronym></span>",
+                        "wordclass": "Verb",
+                        "arabs": [
+                            {
+                                "header": "",
+                                "translations": [
+                                    {
+                                        "source": "<strong class=\"tilde\">tomber</strong> \u00e0 plat <span class=\"sense\">(n&#39;aboutir \u00e0 rien)</span> <span class=\"style\"><acronym title=\"bildlich, \u00fcbertragen, figurativ\">\u00fcbtr</acronym></span>",
+                                        "target": "ins Leere laufen"
                                     }
                                 ]
                             }

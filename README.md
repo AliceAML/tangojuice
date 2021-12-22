@@ -28,15 +28,15 @@ Language learning web app that extracts the vocabulary from a webpage or a video
     - [ ] ajouter fréquence par lemme (mais lemmatisation de la liste de mot via SpaCy, pas sûre de la qualité...)
     - [ ] ou trouver des [fréquences](https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists) par lemmes pour fr, en, de, no ?
     - [ ] déterminer seuils de "rareté" et des mots à ignorer (trop communs)
-    - [ ] ajouter un attribut "formes" - pourquoi déjà ? pour comptabiliser la fréquence des lemmes plutôt que des formes ?
+    - [x] ajouter un attribut "forms" - 1 Word = 1 lemme, qui a plusieurs forms
     - [ ] résoudre le problème du sentencizer qui fait n'importe quoi
-    - [ ]  Gestion des "cognates" (mots apparentés)
     - [ ] Transcription en pinyin / romaji
     - [ ] si c'est pas kanji, ça dégage
 - [ ] Create a database that holds the extracted words. Should we store it forever or empty it after a while?
 - [ ] Implémenter la **traduction** des mots et des phrases
-    - [ ] Trouver une API pour les mots (Wikitonary?)
-    - [ ] Pour les phrases, implémenter avec `googletrans`
+    - [ ] Trouver une API pour les mots (Wikitonary?) https://en.wiktionary.org/w/api.php
+    - [x] Test API PONS (mais qui ne marche pas du tout pour toutes les combinaisons de langues)
+    - [ ] Pour les phrases, implémenter avec `googletrans` > super unreliable!
 - [ ]  S’occuper de l’interface HTML
     - [ ] Ajouter boutons "Only show rare words"
     - [ ] Traduire interface en anglais

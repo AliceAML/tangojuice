@@ -55,7 +55,7 @@ The price of the room is 650€/month(All utilities included) with 1 month depos
 (Pictures of this can be provided separately- the furniture is not the one in the pictures)
 Please send a DM with some info about yourself. We will be arranging either in-person meetings or video calls in the coming days.
     """
-    vocab = make_vocab(text, input_lang=LANG, output_lang="FR")
+    vocab = make_vocab(text, input_lang=LANG, output_lang="fr")
     selected_vocab = vocab.extract_vocab(nb_words=20, onlyRareWords=False)
     for word in selected_vocab:
         print(word)

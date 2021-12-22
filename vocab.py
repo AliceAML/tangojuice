@@ -7,7 +7,7 @@ import spacy
 from string import punctuation
 
 from scraper import scrape
-from translate import translate
+from pons_dict import translate
 
 # les "fréquences relatives" sont calculées par rapport au mot le plus fréquent
 # car on n'a pas le nb de tokens du corpus utilisé
@@ -123,7 +123,10 @@ class Vocabulary:
                 self.words[key].add_occurrence(forme=word.text, sentence=sentence.text)
             else:
                 self.words[key] = Word(
-                    word.lemma_, word.norm_, word.pos_, self.lang_frequencies
+                    word.lemma_,
+                    word.norm_,
+                    word.pos_,
+                    self.lang_frequencies,
                 )
                 self.words[key].add_occurrence(word.norm_, sentence.text)
 
@@ -148,6 +151,14 @@ class Vocabulary:
         word_list = sorted(word_list, key=lambda word: word.doc_freq, reverse=True)
         word_list = word_list[:nb_words]
         # TRADUIRE LES MOTS
+        print(f"Translating {nb_words} words...")
+        for word in word_list:
+            try:
+                word.translation = translate(
+                    word.lemme, src=self.input_lang, dest=self.output_lang
+                )
+            except Exception as e:
+                print("Could not translate word")
         return word_list
 
 
