@@ -22,33 +22,29 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 * go to [localhost:8000](http://localhost:8000)
 
 ## To-do list
-
-- [ ]  `vocab.py` extraction du vocab à partir d'une string.
-    - [x] refaire les json de fréquence avec les vraies fréquences relatives
-    - [ ] ajouter fréquence par lemme (mais lemmatisation de la liste de mot via SpaCy, pas sûre de la qualité...)
-    - [ ] ou trouver des [fréquences](https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists) par lemmes pour fr, en, de, no ?
-    - [ ] déterminer seuils de "rareté" et des mots à ignorer (trop communs)
-    - [x] ajouter un attribut "forms" - 1 Word = 1 lemme, qui a plusieurs forms
-    - [ ] résoudre le problème du sentencizer qui fait n'importe quoi
-    - [ ] Transcription en pinyin / romaji
-    - [ ] si c'est pas kanji, ça dégage
-- [ ] Create a database that holds the extracted words. Should we store it forever or empty it after a while?
-- [ ] Implémenter la **traduction** des mots et des phrases
+- [ ] **PL** - Implémenter la **traduction** des mots et des phrases
     - [ ] Trouver une API pour les mots (Wikitonary?) https://en.wiktionary.org/w/api.php
     - [x] Test API PONS (mais qui ne marche pas du tout pour toutes les combinaisons de langues)
     - [ ] Pour les phrases, implémenter avec `googletrans` > super unreliable!
+- [ ] **Améliorer l'extraction** `vocab.py` extraction du vocab à partir d'une string.
+    - [ ] utiliser la fréquence du lemme
+    - [ ] déterminer seuils de "rareté" et des mots à ignorer (trop communs)
+    - [x] refaire les json de fréquence avec les vraies fréquences relatives
+    - [x] ajouter fréquence par lemme (mais lemmatisation de la liste de mot via SpaCy, pas sûre de la qualité...)
+    - [ ] Transcription en pinyin / romaji
+    - [ ] si c'est pas kanji, ça dégage
+- [ ] Create a database that holds the extracted words. Should we store it forever or empty it after a while?
 - [ ]  S’occuper de l’interface HTML
-    - [ ] Ajouter boutons "Only show rare words"
     - [ ] Traduire interface en anglais
+    - [ ] Mettre un peu de CSS pour que ça soit moins moche ?
     - [ ] Ajouter les options de langues à la page index. Pour la langue de traduction, automatiser. Astuce : `from googletrans import LANGUAGES`
     - [ ] Ajouter menu d'export qui se déplace avec le scroll
     - [ ] Intégrer nouvelles infos au tableau des résultats
     - [x] Copier les *tabs* de https://validator.w3.org/#validate_by_input
-- [ ]  créer flashcards Anki
-    En attendant d'avoir une base de données pour pouvoir récupérer les mots déjà extraits/sélectionnés, je l'ai ajouté comme une alternative sur la page d'accueil.
+- [ ] créer flashcards Anki
     - [ ] sélection des mots
     - [x] création d'un fichier de flashcards
-    - [ ] upload du fichier
+    - [ ] déplacer sur la la page de résultat
 - [x] Ajouter possibilité d'envoyer un fichier srt dans l'API
 - [x]  Script qui scrape un site et récupère le contenu texte, avec option « récursive »
 - [x]  Ajouter support Youtube
