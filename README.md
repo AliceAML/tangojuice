@@ -22,13 +22,13 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 * go to [localhost:8000](http://localhost:8000)
 
 ## To-do list
-- [ ] Utiliser tous les champs du formulaire pour le texte d'input
-- [ ] Tronquer le texte s'il est trop long et prévenir l'utilisateur
-- [ ] **PL** - Implémenter la **traduction** des mots et des phrases
+- [x] Utiliser tous les champs du formulaire pour le texte d'input
+- [x] Tronquer le texte s'il est trop long et prévenir l'utilisateur (en bytes)
+- [x] Implémenter la **traduction** des mots et des phrases
     - [x] Alice : utiliser API Deepl
     - [ ] PL : essaye de scraper des dictionnaires
 - [ ] **Améliorer l'extraction** `vocab.py` extraction du vocab à partir d'une string.
-    - [ ] utiliser la fréquence du lemme
+    - [x] utiliser la fréquence du lemme
     - [ ] déterminer seuils de "rareté" et des mots à ignorer (trop communs)
     - [x] refaire les json de fréquence avec les vraies fréquences relatives
     - [x] ajouter fréquence par lemme (mais lemmatisation de la liste de mot via SpaCy, pas sûre de la qualité...)
@@ -37,11 +37,11 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 - [ ] **PL** - Create a database that holds the extracted words.
     Should we store it forever or empty it after a while?
 - [ ]  S’occuper de l’interface HTML
-    - [ ] Traduire interface en anglais
+    - [x] Traduire interface en anglais
     - [ ] Mettre un peu de CSS pour que ça soit moins moche ?
-    - [ ] Ajouter les options de langues à la page index. Pour la langue de traduction, automatiser. Astuce : `from googletrans import LANGUAGES`
+    - [x] Ajouter les options de langues à la page index. Pour la langue de traduction, automatiser. Astuce : `from googletrans import LANGUAGES`
     - [ ] Ajouter menu d'export qui se déplace avec le scroll
-    - [ ] Intégrer nouvelles infos au tableau des résultats
+    - [x] Intégrer nouvelles infos au tableau des résultats
     - [x] Copier les *tabs* de https://validator.w3.org/#validate_by_input
 - [ ] créer flashcards Anki
     - [ ] sélection des mots
