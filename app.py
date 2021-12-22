@@ -85,33 +85,33 @@ async def scrape(
     )
 
 
-@app.post(
-    "get selected vocab",
-    name="selected_vocab",
-    summary="preprocesses the selected vocab before flashcard selection",
-    tags=["Routes"],
-)
-async def selected_vocab(
-    request: Request,
-):
+# @app.post(
+#     "get selected vocab",
+#     name="selected_vocab",
+#     summary="preprocesses the selected vocab before flashcard selection",
+#     tags=["Routes"],
+# )
+# async def selected_vocab(
+#     request: Request,
+# ):
 
-    return templates.TemplateResponse(
-        "exported.html", {"request": request, "word_list": word_list}
-    )
+#     return templates.TemplateResponse(
+#         "exported.html", {"request": request, "word_list": word_list}
+#     )
 
 
-@app.post(
-    "/export_vocab",
-    name="export_vocab",
-    summary="exports the selected vocabulary (hopefully into flashcards)",
-    description="""if select all = true, will return the whole vocab""",
-    tags=["Routes"],
-)
-async def export_vocab(request: Request, word_list=Form(...)):
+# @app.post(
+#     "/export_vocab",
+#     name="export_vocab",
+#     summary="exports the selected vocabulary (hopefully into flashcards)",
+#     description="""if select all = true, will return the whole vocab""",
+#     tags=["Routes"],
+# )
+# async def export_vocab(request: Request, word_list=Form(...)):
 
-    return templates.TemplateResponse(
-        "exported.html", {"request": request, "word_list": word_list}
-    )
+#     return templates.TemplateResponse(
+#         "exported.html", {"request": request, "word_list": word_list}
+#     )
 
 
 @app.post(
@@ -133,8 +133,9 @@ async def download_anki(
 ):
     # temporary fix: copied /scrape - use this on index page.
     # In the future: use this on results page by getting data from __database__
-    print(text)
-    print(type(text))
+    if rareWordsOnly != False:
+        rareWordsOnly = True
+    print("rareWordsOnly", rareWordsOnly)
 
     if url != None:
         print(f"Scraping page at {url}")
@@ -150,7 +151,7 @@ async def download_anki(
         text += scraper.get_text_from_srt(srt)
 
     print(text)
-    voc = vocab.make_vocab(text, input_lang=inputLang, output_lang=outputLang)
+    voc = vocab.make_vocab(text, input_lang=inputLang.lower(), output_lang=outputLang)
     vocList = voc.extract_vocab(nb_words=int(nbWords), onlyRareWords=rareWordsOnly)
     stream_anki = generate_anki_cards(vocList, title="Tango Juice deck")
     response = StreamingResponse(iter([stream_anki.getvalue()]), media_type="apkg")
