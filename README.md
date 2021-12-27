@@ -20,6 +20,7 @@ Language learning web app that extracts the vocabulary from a webpage or a video
     uvicorn app:app
     ```
 * go to [localhost:8000](http://localhost:8000)
+FastAPI documentation can be found at [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ## To-do list
 - [ ] Supprimer les fichiers inutiles
