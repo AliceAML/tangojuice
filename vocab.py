@@ -4,25 +4,24 @@ Extract complex Word objects from a string
 import itertools
 import json
 import spacy
-from string import punctuation
+from collections import defaultdict
 
 from scraper import scrape
 from deepl_translate import translate
 
-# les "fréquences relatives" sont calculées par rapport au mot le plus fréquent
-# car on n'a pas le nb de tokens du corpus utilisé
-# c'est sûrement pas top !
 
-# TODO déterminer seuils !!!
-# peuvent varier en fonction des langues
 STOPWORD_THRESHOLD = 1
-RARE_WORD_THRESHOLD = 0.0005
+
+# seuil par défaut, si pas de définition pour une langue
+RARE_WORD_THRESHOLD = defaultdict(lambda: 0.0005)
+# TODO déterminer seuils par langue !!! par exemple :
+# RARE_WORD_THRESHOLD["de"] = 0.0005
+# peuvent varier en fonction des langues
 
 OPEN_CLASS_WORDS = ["ADJ", "ADV", "INTJ", "NOUN", "PROPN", "VERB"]
 
-# LOAD RESSOURCES EVERYTIME THE APP IS STARTED
 MODEL_NAMES = {
-    "de": "de_core_news_sm",  # "de_dep_news_trf",
+    "de": "de_core_news_sm",
     "en": "en_core_web_sm",
     "fr": "fr_core_news_sm",
     "ja": "ja_core_news_sm",
@@ -30,27 +29,8 @@ MODEL_NAMES = {
     "zh": "zh_core_web_sm",
 }
 
-# good idea but... makes Heroku crash (limit exceeded)
-# SPACY_MODELS = {}
-# LANG_FREQUENCIES = {}
-# for i, (lang, model) in enumerate(MODEL_NAMES.items()):
-#     print(f"Load {model} SpaCy model ({i+1}/{len(MODEL_NAMES)})")
-#     try:
-#         SPACY_MODELS[lang] = spacy.load(model)
-#     except Exception as e:
-#         print(f"Could not load {model} model")
-#         print(e)
-#     print(f"Load {lang} frequency list")
-#     try:
-#         LANG_FREQUENCIES[lang] = json.load(
-#             open(f"frequency_lists/{lang}_full.json", "r")
-#         )
-#     except Exception as e:
-#         print(f"Could not load {lang} frequency list")
-#         print(e)
 
-
-def is_punct(word: str):
+def is_not_alpha(word: str):
     return all(not c.isalpha() for c in word)
 
 
@@ -62,16 +42,16 @@ class Word:
 
     newid = itertools.count()  # count nb of word objects
 
-    def __init__(self, lemme, forme, pos, lang_frequencies: dict):
+    def __init__(self, lemme, forme, pos, lang_frequencies: dict, lang):
         self.id = next(Word.newid)
         self.lemme = lemme
         self.forms = {forme}
         self.pos = pos
         self.occurrences = []
         self.lang_freq = int(lang_frequencies.get(lemme, 0))
-        # FIXME c'est un problème de prendre seulement la fréquence du lemme...
         self.doc_freq = 0
         self.translation = ""
+        self.lang = lang
 
     def add_occurrence(self, forme, sentence: str):
         """
@@ -85,13 +65,17 @@ class Word:
         """
         Return true if this word is rare
         """
-        return self.lang_freq < RARE_WORD_THRESHOLD
+        return self.lang_freq < RARE_WORD_THRESHOLD[self.lang]
 
     def __str__(self):
         return f"{self.id:<4} {self.lemme:<15} {self.pos:<5} {self.doc_freq:<2} {self.lang_freq:.10f}"  # {self.occurrences}"
 
 
 class Vocabulary:
+    """
+    Object that contains a list of Word objects.
+    """
+
     def __init__(self, input_lang, output_lang, lang_frequencies: dict):
         self.lang_frequencies = lang_frequencies
         self.words = {}
@@ -107,20 +91,15 @@ class Vocabulary:
 
     def process_sentence(self, sentence):
         """
-        Add tokens in the sentence to the vocabulary.
+        Add tokens from this sentence to the vocabulary.
         """
-        # print(sentence)
         for word in sentence:
             key = word.lemma_ + word.pos_
-            # print(key)
             # do not include stopwords and punctuation
             if (
                 self.lang_frequencies.get(word.lemma_, 0) > STOPWORD_THRESHOLD
-                # or not word.is_alpha
-                # TODO rejecter toutes les POS fermées ?
-                or word.pos_ not in OPEN_CLASS_WORDS
-                # complete list : https://universaldependencies.org/u/pos/
-                or is_punct(word.text)  # FIXME retirer tout ce qui est 100% pas alpha
+                or word.pos_ not in OPEN_CLASS_WORDS  # rejeter toutes les POS fermées
+                or is_not_alpha(word.text)
             ):
                 continue
             elif key in self.words:
@@ -131,6 +110,7 @@ class Vocabulary:
                     word.norm_,
                     word.pos_,
                     self.lang_frequencies,
+                    self.input_lang,
                 )
                 self.words[key].add_occurrence(word.norm_, sentence.text)
 
@@ -141,12 +121,14 @@ class Vocabulary:
         """
         Return a list of nb_words most frequent words.
         """
-        print(f"Select {nb_words} most common words in the document.")
         if nb_words is None:
             nb_words = len(self.words)  # default value = return all the words
+        print(f"Select {nb_words} most common words in the document.")
 
         if onlyRareWords:
-            print(f"Only keep words with a frequency < {RARE_WORD_THRESHOLD}")
+            print(
+                f"Only keep words with a frequency < {RARE_WORD_THRESHOLD[self.input_lang]}"
+            )
             word_list = (word for word in self.words.values() if word.is_rare())
         else:
             word_list = self.words.values()
@@ -155,7 +137,7 @@ class Vocabulary:
         # tri par fréquence doc (descendant)
         word_list = sorted(word_list, key=lambda word: word.doc_freq, reverse=True)
         word_list = word_list[:nb_words]
-        # TRADUIRE LES MOTS
+
         print(f"Translating {nb_words} words...")
         for word in word_list:
             try:
@@ -168,7 +150,7 @@ class Vocabulary:
 
 
 def make_vocab(text, input_lang, output_lang):
-    # normalize apostrophes in text
+    # normalize apostrophes in text, to prevent tokenization issues
     text = text.replace("’", "'")
 
     print(f"Load {input_lang} frequency list")
@@ -190,7 +172,7 @@ def make_vocab(text, input_lang, output_lang):
     return vocab
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # tests
     LANG = "en"
     # text = scrape(
     #     "https://www.leparisien.fr/faits-divers/mayenne-une-joggeuse-de-17-ans-portee-disparue-un-dispositif-de-recherches-lance-08-11-2021-Z6EITYD6OFE23I2S2BR3RP2YOA.php",
@@ -207,7 +189,3 @@ Please send a DM with some info about yourself. We will be arranging either in-p
     selected_vocab = vocab.extract_vocab(nb_words=20, onlyRareWords=True)
     for word in selected_vocab:
         print(word)
-    # FIXME le sentencizer ça marche pas du tout sur les textes bruts...
-    # FIXME certaines expressions ne devraient pas être tokenisées, comme "New York" (surtout les entités nommées)
-    # FIXME problème de scraping, parfois on chope encore des bouts de code HTML inutiles
-    # ex : "Pfeil runter" sur "https://www.tagesschau.de/ausland/amerika/usa-reisende-101.html"
