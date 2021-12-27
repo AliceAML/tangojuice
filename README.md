@@ -9,12 +9,14 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 
 ## How to run the API locally
 * clone repo
-* setup virtual environment:
+* setup virtual environment. You will need a [Deepl API authorization key](https://www.deepl.com/fr/docs-api/accessing-the-api/authentication/):
     ```console
     python3 -m virtualenv .venv
     source .venv/bin/activate
     pip install -U -r requirements.txt
+    export DEEPL_KEY=your-api-key-here
     ```
+
 * start uvicorn 
     ```console
     uvicorn app:app
