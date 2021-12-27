@@ -35,7 +35,7 @@ Nous avons essayé de suivre le *design pattern* **Modèle/Vue/Controleur**.
 * `scraper.py` : extrait le texte d'un site, d'une vidéo youtube ou d'un fichier `srt` 
 
 ### Déploiement sur Heroku
-Notre application est automatiquement déployée sur Heroku à chaque mise à jour de la branche `main`.
+Notre application est automatiquement déployée sur Heroku à chaque mise à jour de la branche `main`. Elle est disponible à cette adresse : https://tangojuice.herokuapp.com/
 
 ## Améliorations possibles
 *  La sélection des mots proposés pourraient sûrement être rendue plus pertinente avec une approche statistique plus sophistiquée, et en incluant des groupes de plusieurs tokens (par exemple "New York").
