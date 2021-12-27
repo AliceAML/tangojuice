@@ -44,7 +44,7 @@ def generate_anki_cards(vocab: list[Word], title: str) -> io.BytesIO:
 
 if __name__ == "__main__":
     INPUT_LANG = "fr"
-    OUTPUT_LANG = "en"
+    OUTPUT_LANG = "en-us"
     # text = scrape(
     #     "https://www.leparisien.fr/faits-divers/mayenne-une-joggeuse-de-17-ans-portee-disparue-un-dispositif-de-recherches-lance-08-11-2021-Z6EITYD6OFE23I2S2BR3RP2YOA.php",
     #     lang=LANG,
