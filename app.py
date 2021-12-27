@@ -36,28 +36,13 @@ async def index(request: Request):
     )
 
 
-@app.post(
-    "/scrape",
-    name="Scrape",
-    summary="Returns a raw list of words from a webpage",
-    description="""if recursive = true, will also scrap links to the same domain that are on the page
-    stupid tokenization only""",
-    tags=["Routes"],
-)
-async def scrape(
-    request: Request,
-    url=Form(default=None),
-    text=Form(default=""),
-    srtfile: UploadFile = File(default=None),
-    recursive=Form(default=False),
-    inputLang=Form(...),
-    outputLang=Form(...),
-    nbWords=Form(...),
-    rareWordsOnly=Form(default=False),
-):
-    # FIXME la logique est nulle ici ! problème : et si il y a une url, un text et un srtfile ?
-    # FIXME
-
+async def extract_vocab_from_form(
+    url, text, srtfile, recursive, inputLang, outputLang, nbWords, rareWordsOnly
+) -> list:
+    """
+    Pipeline used in scrape and download_anki to generate the vocabulary using the
+    form data.
+    """
     if rareWordsOnly != False:
         rareWordsOnly = True
     print("rareWordsOnly", rareWordsOnly)
@@ -70,8 +55,7 @@ async def scrape(
             raise HTTPException(status_code=404, detail="Subtitles not found")
     if srtfile != None:
         print(f"reading srt file {srtfile=}")
-        # print(file.file)
-        srt: bytes = await srtfile.read()  # TODO extract from srt file
+        srt: bytes = await srtfile.read()
         srt = srt.decode("utf-8")
         text += scraper.get_text_from_srt(srt)
 
@@ -80,10 +64,67 @@ async def scrape(
         text, input_lang=inputLang.lower(), output_lang=outputLang.lower()
     )
     vocList = voc.extract_vocab(nb_words=int(nbWords), onlyRareWords=rareWordsOnly)
+
+    return vocList
+
+
+@app.post(
+    "/extract",
+    name="Extract",
+    summary="Returns a list of relevant word objects from a webpage",
+    description="""if recursive = true, will also scrap links to the same domain that are on the page""",
+    tags=["Routes"],
+)
+async def extract(
+    request: Request,
+    url=Form(default=None),
+    text=Form(default=""),
+    srtfile: UploadFile = File(default=None),
+    recursive=Form(default=False),
+    inputLang=Form(...),
+    outputLang=Form(...),
+    nbWords=Form(...),
+    rareWordsOnly=Form(default=False),
+):
+
+    vocList = await extract_vocab_from_form(
+        url, text, srtfile, recursive, inputLang, outputLang, nbWords, rareWordsOnly
+    )
     return templates.TemplateResponse(
         "results_words.html", {"request": request, "words": vocList}
     )
 
+
+@app.post(
+    "/anki",
+    name="download_anki",
+    summary="downloads the relevant vocabulary in anki format",
+)
+# source: https://stackoverflow.com/a/61910803
+async def download_anki(
+    request: Request,
+    url=Form(default=None),
+    text=Form(default=""),
+    srtfile: UploadFile = File(default=None),
+    recursive=Form(default=False),
+    inputLang=Form(...),
+    outputLang=Form(...),
+    nbWords=Form(...),
+    rareWordsOnly=Form(default=False),
+):
+    vocList = await extract_vocab_from_form(
+        url, text, srtfile, recursive, inputLang, outputLang, nbWords, rareWordsOnly
+    )
+
+    stream_anki = generate_anki_cards(vocList, title="Tango Juice deck")
+    response = StreamingResponse(iter([stream_anki.getvalue()]), media_type="apkg")
+
+    response.headers["Content-Disposition"] = "attachment; filename=tangojuice.apkg"
+
+    return response
+
+
+# TODO : Pierre-Louis, peux-tu les supprimer si on ne s'en sert pas ?
 
 # @app.post(
 #     "get selected vocab",
@@ -112,53 +153,6 @@ async def scrape(
 #     return templates.TemplateResponse(
 #         "exported.html", {"request": request, "word_list": word_list}
 #     )
-
-
-@app.post(
-    "/anki",
-    name="download_anki",
-    summary="downloads the selected vocabulary in anki format",
-)
-# source: https://stackoverflow.com/a/61910803
-async def download_anki(
-    request: Request,
-    url=Form(default=None),
-    text=Form(default=""),
-    srtfile: UploadFile = File(default=None),
-    recursive=Form(default=False),
-    inputLang=Form(...),
-    outputLang=Form(...),
-    nbWords=Form(...),
-    rareWordsOnly=Form(default=False),
-):
-    # temporary fix: copied /scrape - use this on index page.
-    # In the future: use this on results page by getting data from __database__
-    if rareWordsOnly != False:
-        rareWordsOnly = True
-    print("rareWordsOnly", rareWordsOnly)
-
-    if url != None:
-        print(f"Scraping page at {url}")
-        try:
-            text += scraper.scrape(url, recursive=recursive, lang=inputLang)
-        except youtube_transcript_api._errors.NoTranscriptFound as e:
-            raise HTTPException(status_code=404, detail="Subtitles not found")
-    if srtfile != None:
-        print(f"reading srt file {srtfile=}")
-        # print(file.file)
-        srt: bytes = await srtfile.read()  # TODO extract from srt file
-        srt = srt.decode("utf-8")
-        text += scraper.get_text_from_srt(srt)
-
-    print(text)
-    voc = vocab.make_vocab(text, input_lang=inputLang.lower(), output_lang=outputLang)
-    vocList = voc.extract_vocab(nb_words=int(nbWords), onlyRareWords=rareWordsOnly)
-    stream_anki = generate_anki_cards(vocList, title="Tango Juice deck")
-    response = StreamingResponse(iter([stream_anki.getvalue()]), media_type="apkg")
-
-    response.headers["Content-Disposition"] = "attachment; filename=tangojuice.apkg"
-
-    return response
 
 
 """
