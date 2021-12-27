@@ -38,7 +38,7 @@ Nous avons essayé de suivre le *design pattern* **Modèle/Vue/Controleur**.
 Notre application est automatiquement déployée sur Heroku à chaque mise à jour de la branche `main`.
 
 ## Améliorations possibles
-*  La sélection des mots proposés pourraient sûrement être rendue plus pertinente avec une approche statistique plus raffinée.
+*  La sélection des mots proposés pourraient sûrement être rendue plus pertinente avec une approche statistique plus sophistiquée, et en incluant des groupes de plusieurs tokens (par exemple "New York").
 *  La traduction est souvent insatisfaisante : on aurait aimé proposer plusieurs traductions, ou en choisir une en fonction du contexte, mais les limites des APIs utilisées ne nous ont pas permis de le faire : la limite de caractères ne nous permettait pas de traduire le texte entier sans payer, et l'API Deepl ne propose qu'une seule traduction.
 * On aurait aimé proposer la possibilité de sélectionner, sur la page de résultats, les mots à extraire en flashcards Anki. Cela pourrait être fait en Javascript et nous pensons qu'il faudrait pour cela créer une base de données. En effet, actuellement, nous ne pouvons récupérer les données liée à chaque mot depuis la page des résultats, une fois que nous les affichons ils sont "perdus", à moins de les extraire à nouveau, car nous ne les avons pas stockés dans une base de données.
 * Un point d'optimisation : il serait intéressant de garder le modèle SpaCy utilisé en mémoire afin de pouvoir le réutiliser sans devoir le recharger.
