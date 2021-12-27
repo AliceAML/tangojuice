@@ -22,6 +22,9 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 * go to [localhost:8000](http://localhost:8000)
 
 ## To-do list
+- [ ] Supprimer les fichiers inutiles
+- [ ] Nettoyer les commentaires (supprimer/rajouter)
+- [ ] Rédiger la documentation
 - [x] Utiliser tous les champs du formulaire pour le texte d'input
 - [x] Tronquer le texte s'il est trop long et prévenir l'utilisateur (en bytes)
 - [x] Implémenter la **traduction** des mots et des phrases
