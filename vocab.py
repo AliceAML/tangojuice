@@ -178,27 +178,31 @@ def make_vocab(text, input_lang, output_lang):
     try:
         doc = nlp(text)
     except Exception as e:
-        if "Input is too long" in e:
-            print(f"e\nTruncating the text and keeping the beginning.")
+        if "Input is too long" in str(e):
+            print(f"{e}\nTruncating the text and keeping the beginning.")
             original_length = len(text)
             max_length = 49149
             byted = text.encode("utf-8")
+            i = 0
             while True:
-                i = 0
                 new_byted = byted[ : max_length - i]
                 try:
                     text = new_byted.decode()
-                except UnicodeDecodeError:
+                    break
+                except UnicodeDecodeError as e:
+                    print(e)
                     i += 1
-                break
-            print(f" we removed { (len(text)/original_length)*100 } % of the text")
+                    print(i)
+                if i == 10:
+                    break
+            print(f" we removed { 100 - (len(text)/original_length)*100 } % of the text")
             doc = nlp(text)
 
     print("Extract vocabulary")
     for sent in doc.sents:
         vocab.process_sentence(sent)
 
-    print(f"{len(vocab.words)} lexemes extracted")
+    print(f"{len(vocab.words)} lemmas extracted")
     return vocab
 
 
