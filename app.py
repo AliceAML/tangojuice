@@ -73,7 +73,6 @@ async def extract_vocab_from_form(
     name="Extract",
     summary="Returns a list of relevant word objects from a webpage",
     description="""if recursive = true, will also scrap links to the same domain that are on the page""",
-    tags=["Routes"],
 )
 async def extract(
     request: Request,
