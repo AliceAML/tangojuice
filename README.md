@@ -1,7 +1,7 @@
 # :beverage_box: TangoJuice
 *Vocabulary extractor*
 
-Language learning web app that extracts the vocabulary from a webpage or a video's captions, filters it by difficulty level and automatically creates Anki flashcards.
+Language learning web app that extracts the vocabulary from a webpage or a video's captions, filters it by difficulty level and automatically creates Anki flashcards. Available at https://tangojuice.herokuapp.com/
 
 [Links and ideas on Notion](https://sturdy-starfish-3ee.notion.site/Projet-API-31a173f329eb45c4acdcfc5e60d851e1)
 
@@ -22,6 +22,7 @@ Language learning web app that extracts the vocabulary from a webpage or a video
     uvicorn app:app
     ```
 * go to [localhost:8000](http://localhost:8000)
+
 FastAPI documentation can be found at [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ## To-do list
