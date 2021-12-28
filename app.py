@@ -1,13 +1,11 @@
 from fastapi import FastAPI, Form, HTTPException, Request, File
 from fastapi.datastructures import UploadFile
-from fastapi.responses import HTMLResponse
 from fastapi.responses import StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 # https://fastapi.tiangolo.com/advanced/templates/
 
-from collections import Counter, defaultdict, namedtuple
 import youtube_transcript_api._errors
 import vocab
 
