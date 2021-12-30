@@ -45,6 +45,13 @@ def scrape(url: str, lang, recursive=False) -> str:
 
     netloc = urlparse(url).netloc
 
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, "lxml")
+
+    title = soup.find("title").text
+
+    print("title", title)
+
     # add call to youtube.get_text() for youtube videos !
     # check if it's a youtube video
     if is_youtube_video(url):
@@ -53,9 +60,6 @@ def scrape(url: str, lang, recursive=False) -> str:
         except youtube_transcript_api._errors.NoTranscriptFound as e:
             raise e
     else:
-        response = requests.get(url)
-        soup = BeautifulSoup(response.text, "lxml")
-
         for elt in soup("noscript"):
             elt.extract()
         for elt in soup("script"):
@@ -76,7 +80,7 @@ def scrape(url: str, lang, recursive=False) -> str:
                     text += scrape(link, lang=lang)
                 except requests.exceptions.InvalidSchema as e:
                     print(e)
-    return text
+    return text, title
 
 
 if __name__ == "__main__":

@@ -25,7 +25,7 @@ my_model = genanki.Model(
 
 
 def generate_anki_cards(vocab: list[Word], title: str) -> io.BytesIO:
-    my_deck = genanki.Deck(random.randrange(1 << 30, 1 << 31), title)
+    my_deck = genanki.Deck(random.randrange(1 << 30, 1 << 31), title[:50])
 
     for word in vocab:
         ex_nb = random.randrange(0, len(word.occurrences))

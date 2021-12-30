@@ -53,14 +53,21 @@ async def extract_vocab_from_form(
         rareWordsOnly = True
     print("rareWordsOnly", rareWordsOnly)
 
+    title = ""
+
     if url != None:
         print(f"Scraping page at {url}")
         try:
-            text += scraper.scrape(url, recursive=recursive, lang=inputLang)
+            text_url, title_url = scraper.scrape(
+                url, recursive=recursive, lang=inputLang
+            )
+            text += text_url
+            title += title_url
         except youtube_transcript_api._errors.NoTranscriptFound as e:
             raise HTTPException(status_code=404, detail="Subtitles not found")
     if srtfile != None:
         print(f"reading srt file {srtfile=}")
+        title += srtfile.filename
         srt: bytes = await srtfile.read()
         srt = srt.decode("utf-8")
         text += scraper.get_text_from_srt(srt)
@@ -74,7 +81,7 @@ async def extract_vocab_from_form(
     )
     vocList = voc.extract_vocab(nb_words=int(nbWords), onlyRareWords=rareWordsOnly)
 
-    return vocList
+    return vocList, title
 
 
 @app.post(
@@ -96,7 +103,7 @@ async def extract(
     noPropNouns=Form(default=False),
 ):
 
-    vocList = await extract_vocab_from_form(
+    vocList, title = await extract_vocab_from_form(
         url,
         text,
         srtfile,
@@ -108,7 +115,8 @@ async def extract(
         noPropNouns,
     )
     return templates.TemplateResponse(
-        "results_words.html", {"request": request, "words": vocList}
+        "results_words.html",
+        {"request": request, "words": vocList, "url": url, "title": title},
     )
 
 
@@ -130,7 +138,7 @@ async def download_anki(
     rareWordsOnly=Form(default=False),
     noPropNouns=Form(default=False),
 ):
-    vocList = await extract_vocab_from_form(
+    vocList, title = await extract_vocab_from_form(
         url,
         text,
         srtfile,
@@ -142,7 +150,7 @@ async def download_anki(
         noPropNouns,
     )
 
-    stream_anki = generate_anki_cards(vocList, title="Tango Juice deck")
+    stream_anki = generate_anki_cards(vocList, title=title)
     response = StreamingResponse(iter([stream_anki.getvalue()]), media_type="apkg")
 
     response.headers["Content-Disposition"] = "attachment; filename=tangojuice.apkg"
