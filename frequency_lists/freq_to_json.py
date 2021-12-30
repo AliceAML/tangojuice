@@ -51,6 +51,28 @@ def convert_freq_list_to_json(file):
         json.dump(freqs_lemmas, g, indent=2)
 
 
-print(f"Convert {sys.argv[1]}")
-convert_freq_list_to_json(sys.argv[1])
-# result = json.load(open(sys.argv[1].replace(".txt", ".json"), "r"))
+def sort_json(file):
+    with open(file, "r") as f:
+        data = json.load(f)
+    print(f"Sorting {file}")
+    sorted_data = {
+        lemme: freq
+        for lemme, freq in sorted(data.items(), key=lambda x: x[1], reverse=True)
+    }
+    print(list(sorted_data.items())[:10])
+    with open(file, "w") as f:
+        json.dump(
+            sorted_data,
+            f,
+            indent=2,
+        )
+    print(f"Sorted {file}")
+
+
+if __name__ == "__main__":
+    if sys.argv[1] == "convert":
+        print(f"Convert {sys.argv[2]}")
+        convert_freq_list_to_json(sys.argv[2])
+    elif sys.argv[1] == "sort":
+        print(f"Sort {sys.argv[2]}")
+        sort_json(sys.argv[2])
