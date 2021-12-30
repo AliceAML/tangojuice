@@ -35,7 +35,15 @@ async def index(request: Request):
 
 
 async def extract_vocab_from_form(
-    url, text, srtfile, recursive, inputLang, outputLang, nbWords, rareWordsOnly
+    url,
+    text,
+    srtfile,
+    recursive,
+    inputLang,
+    outputLang,
+    nbWords,
+    rareWordsOnly,
+    noPropNouns,
 ) -> list:
     """
     Pipeline used in scrape and download_anki to generate the vocabulary using the
@@ -59,7 +67,10 @@ async def extract_vocab_from_form(
 
     print(text)
     voc = vocab.make_vocab(
-        text, input_lang=inputLang.lower(), output_lang=outputLang.lower()
+        text,
+        input_lang=inputLang.lower(),
+        output_lang=outputLang.lower(),
+        noPropNouns=noPropNouns,
     )
     vocList = voc.extract_vocab(nb_words=int(nbWords), onlyRareWords=rareWordsOnly)
 
@@ -82,10 +93,19 @@ async def extract(
     outputLang=Form(...),
     nbWords=Form(...),
     rareWordsOnly=Form(default=False),
+    noPropNouns=Form(default=False),
 ):
 
     vocList = await extract_vocab_from_form(
-        url, text, srtfile, recursive, inputLang, outputLang, nbWords, rareWordsOnly
+        url,
+        text,
+        srtfile,
+        recursive,
+        inputLang,
+        outputLang,
+        nbWords,
+        rareWordsOnly,
+        noPropNouns,
     )
     return templates.TemplateResponse(
         "results_words.html", {"request": request, "words": vocList}

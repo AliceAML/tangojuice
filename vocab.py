@@ -90,7 +90,7 @@ class Vocabulary:
     def add_word(self, word):
         self.words[word.lemme] = word
 
-    def process_sentence(self, sentence):
+    def process_sentence(self, sentence, noPropNouns=False):
         """
         Add tokens from this sentence to the vocabulary.
         """
@@ -101,6 +101,7 @@ class Vocabulary:
                 self.lang_frequencies.get(word.lemma_, 0) > STOPWORD_THRESHOLD
                 or word.pos_ not in OPEN_CLASS_WORDS  # rejeter toutes les POS fermées
                 or is_not_alpha(word.text)
+                or (noPropNouns and word.pos_ == "PROPN")
             ):
                 continue
             elif key in self.words:
@@ -150,7 +151,7 @@ class Vocabulary:
         return word_list
 
 
-def make_vocab(text, input_lang, output_lang):
+def make_vocab(text, input_lang, output_lang, noPropNouns=False):
     # normalize apostrophes in text, to prevent tokenization issues
     text = text.replace("’", "'")
 
@@ -167,7 +168,7 @@ def make_vocab(text, input_lang, output_lang):
     doc = nlp(text)
     print("Extract vocabulary")
     for sent in doc.sents:
-        vocab.process_sentence(sent)
+        vocab.process_sentence(sent, noPropNouns)
 
     print(f"{len(vocab.words)} lexemes extracted")
     return vocab
