@@ -7,7 +7,10 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 
 [Consignes](https://loicgrobol.github.io/web-interfaces/assignments/projets.html)
 
+![](/home/aliceh/Documents/LI/M2/web-interfaces/tangojuice/Screenshot_results.png)
+
 ## How to run the API locally
+
 * clone repo
 * setup virtual environment. You will need a [Deepl API authorization key](https://www.deepl.com/fr/docs-api/accessing-the-api/authentication/):
     ```console
