@@ -50,7 +50,10 @@ class Word:
         self.forms = {forme}
         self.pos = pos
         self.occurrences = []
-        self.lang_freq = float(lang_frequencies.get(lemme, 0))
+        self.lang_freq = max(
+            float(lang_frequencies.get(lemme, 0)),
+            float(lang_frequencies.get(lemme.lower(), 0)),
+        )
         self.doc_freq = 0
         self.translation = ""
         self.lang = lang
