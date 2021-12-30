@@ -6,6 +6,7 @@
       <th>Words</th>
       <th>Occurences</th>
       <th>Translation</th>
+      <th>Example</th>
    </tr>
    {% for item in words %}
    <tr>
@@ -18,6 +19,9 @@
       </td>
       <td>
          {{ item.translation }}
+      </td>
+      <td>
+         {{ item.occurrences[0] }}
       </td>
    </tr>
    {% endfor %}

@@ -10,18 +10,20 @@
         <th>POS</th>
         <th>Occurences</th>
         <th>Translation</th>
+        <th>Example</th>
     </tr>
     {% for word in words %}
     <tr>
 
         <td>
             <input type="checkbox" , name="cb_word" id="{{word.lemme}}">
-            <label for="{{word.lemme}}">{{ word.lemme }}</label>
+            <b><label for="{{word.lemme}}">{{ word.lemme }}</label></b>
 
         </td>
         <td>{{ word.pos }}</td>
         <td>{{ word.doc_freq }}</td>
         <td>{{ word.translation}}</td>
+        <td><i>{{ word.occurrences[0]}}</i></td>
     </tr>
     {% endfor %}
 </table>
