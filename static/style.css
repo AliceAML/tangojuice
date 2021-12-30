@@ -1,12 +1,13 @@
-body {
+body,
+.header {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
-main {
+/* main {
     max-width: 800px;
     min-width: 400px;
-}
+} */
 
 h1 a {
     color: black;
