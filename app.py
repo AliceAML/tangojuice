@@ -128,9 +128,18 @@ async def download_anki(
     outputLang=Form(...),
     nbWords=Form(...),
     rareWordsOnly=Form(default=False),
+    noPropNouns=Form(default=False),
 ):
     vocList = await extract_vocab_from_form(
-        url, text, srtfile, recursive, inputLang, outputLang, nbWords, rareWordsOnly
+        url,
+        text,
+        srtfile,
+        recursive,
+        inputLang,
+        outputLang,
+        nbWords,
+        rareWordsOnly,
+        noPropNouns,
     )
 
     stream_anki = generate_anki_cards(vocList, title="Tango Juice deck")
