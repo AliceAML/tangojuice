@@ -13,9 +13,10 @@ from deepl_translate import translate
 STOPWORD_THRESHOLD = 1
 
 # seuil par défaut, si pas de définition pour une langue
-RARE_WORD_THRESHOLD = defaultdict(lambda: 0.0005)
-# TODO déterminer seuils par langue !!! par exemple :
+RARE_WORD_THRESHOLD = defaultdict(lambda: 0.0001)
+# TODO déterminer seuils par langue en regardant les listes de fréquence
 # RARE_WORD_THRESHOLD["de"] = 0.0005
+RARE_WORD_THRESHOLD["fr"] = 0.00016
 # peuvent varier en fonction des langues
 
 OPEN_CLASS_WORDS = ["ADJ", "ADV", "INTJ", "NOUN", "PROPN", "VERB"]
@@ -48,7 +49,7 @@ class Word:
         self.forms = {forme}
         self.pos = pos
         self.occurrences = []
-        self.lang_freq = int(lang_frequencies.get(lemme, 0))
+        self.lang_freq = float(lang_frequencies.get(lemme, 0))
         self.doc_freq = 0
         self.translation = ""
         self.lang = lang
