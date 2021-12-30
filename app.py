@@ -163,7 +163,6 @@ async def download_anki(
         rareWordsOnly,
         noPropNouns,
     )
-
     stream_anki = generate_anki_cards(vocList, title=title)
     response = StreamingResponse(iter([stream_anki.getvalue()]), media_type="apkg")
 

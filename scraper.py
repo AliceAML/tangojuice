@@ -49,7 +49,6 @@ def scrape(url: str, lang, recursive=False) -> str:
     if response.status_code >= 400:
         print(f"Scrape error: {response.status_code} ")
         print("The error will be obvious for the user in the result page")
-
         return response.status_code, None
 
     soup = BeautifulSoup(response.text, "lxml")

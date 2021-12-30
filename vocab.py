@@ -62,9 +62,12 @@ class Word:
         """
         Add an occurrence to the word.
         """
+
         self.forms.add(forme)
         self.occurrences.append(sentence)
         self.doc_freq += 1
+
+
 
     def is_rare(self) -> bool:
         """
@@ -99,10 +102,12 @@ class Vocabulary:
         Add tokens from this sentence to the vocabulary.
         """
         for word in sentence:
-            key = word.lemma_ + word.pos_
+            #chinese tokens don't have lemmas
+            lemma = word.lemma_ if word.lemma_ else str(word)
+            key = lemma + word.pos_
             # do not include stopwords and punctuation
             if (
-                self.lang_frequencies.get(word.lemma_, 0) > STOPWORD_THRESHOLD
+                self.lang_frequencies.get(lemma, 0) > STOPWORD_THRESHOLD
                 or word.pos_ not in OPEN_CLASS_WORDS  # rejeter toutes les POS fermées
                 or is_not_alpha(word.text)
                 or (noPropNouns and word.pos_ == "PROPN")
@@ -112,7 +117,7 @@ class Vocabulary:
                 self.words[key].add_occurrence(forme=word.text, sentence=sentence.text)
             else:
                 self.words[key] = Word(
-                    word.lemma_,
+                    lemma,
                     word.norm_,
                     word.pos_,
                     self.lang_frequencies,
@@ -183,15 +188,21 @@ def make_vocab(text, input_lang, output_lang, noPropNouns=False):
 
     #debugging chinese
     if input_lang == "zh":
-        for i,sent in enumerate(doc.sents):
-            print(f"spacy chinese sentences: {i}:{sent}")
-
-
+        for sent in doc.sents:
+            for tok in sent:
+                #print(f"spacy chinese token :{tok}")
+                pass
+        #for tok in doc:
+         #   print(f"spacy chinese token :{tok}")
 
     for sent in doc.sents:
+        #print(f"{sent}, type {type(sent)}")
         vocab.process_sentence(sent, noPropNouns)
-
     print(f"{len(vocab.words)} lexemes extracted")
+
+    for w in vocab.words:
+        print(w)
+        print(vocab.words[w])
     return vocab
 
 
