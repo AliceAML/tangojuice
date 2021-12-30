@@ -180,6 +180,14 @@ def make_vocab(text, input_lang, output_lang, noPropNouns=False):
     print("Parse text")
     doc = nlp(text)
     print("Extract vocabulary")
+
+    #debugging chinese
+    if input_lang == "zh":
+        for i,sent in enumerate(doc.sents):
+            print(f"spacy chinese sentences: {i}:{sent}")
+
+
+
     for sent in doc.sents:
         vocab.process_sentence(sent, noPropNouns)
 

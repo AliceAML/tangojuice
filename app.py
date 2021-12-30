@@ -67,10 +67,16 @@ async def extract_vocab_from_form(
             text_url, title_url = scraper.scrape(
                 url, recursive=recursive, lang=inputLang
             )
+            #weird way of handling a 403 status code error
+            if isinstance(text_url, int) and not title_url:
+                raise HTTPException(status_code=text_url, detail="Access denied. If you are scraping an article, try and copy paste its content in the 'From Text' section of the home page")
             text += text_url
             title += title_url
         except youtube_transcript_api._errors.NoTranscriptFound as e:
             raise HTTPException(status_code=404, detail="Subtitles not found")
+
+
+
     elif srtfile != None:
         print(f"reading srt file {srtfile=}")
         title += srtfile.filename
