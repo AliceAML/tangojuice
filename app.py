@@ -49,6 +49,12 @@ async def extract_vocab_from_form(
     Pipeline used in scrape and download_anki to generate the vocabulary using the
     form data.
     """
+    print(inputLang, outputLang)
+    if inputLang == outputLang[:2].lower():
+        raise HTTPException(
+            status_code=404, detail="Input and output languages identical"
+        )
+
     if rareWordsOnly != False:
         rareWordsOnly = True
     print("rareWordsOnly", rareWordsOnly)
@@ -73,6 +79,8 @@ async def extract_vocab_from_form(
         text += scraper.get_text_from_srt(srt)
 
     print(text)
+    if text.strip() == "":
+        raise HTTPException(status_code=404, detail="No text to parse")
     voc = vocab.make_vocab(
         text,
         input_lang=inputLang.lower(),
