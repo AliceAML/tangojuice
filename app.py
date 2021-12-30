@@ -71,14 +71,14 @@ async def extract_vocab_from_form(
             title += title_url
         except youtube_transcript_api._errors.NoTranscriptFound as e:
             raise HTTPException(status_code=404, detail="Subtitles not found")
-    if srtfile != None:
+    elif srtfile != None:
         print(f"reading srt file {srtfile=}")
         title += srtfile.filename
         srt: bytes = await srtfile.read()
         srt = srt.decode("utf-8")
         text += scraper.get_text_from_srt(srt)
 
-    print(text)
+
     if text.strip() == "":
         raise HTTPException(status_code=404, detail="No text to parse")
     voc = vocab.make_vocab(
@@ -166,35 +166,6 @@ async def download_anki(
     return response
 
 
-# TODO : Pierre-Louis, peux-tu les supprimer si on ne s'en sert pas ?
-
-# @app.post(
-#     "get selected vocab",
-#     name="selected_vocab",
-#     summary="preprocesses the selected vocab before flashcard selection",
-#     tags=["Routes"],
-# )
-# async def selected_vocab(
-#     request: Request,
-# ):
-
-#     return templates.TemplateResponse(
-#         "exported.html", {"request": request, "word_list": word_list}
-#     )
-
-
-# @app.post(
-#     "/export_vocab",
-#     name="export_vocab",
-#     summary="exports the selected vocabulary (hopefully into flashcards)",
-#     description="""if select all = true, will return the whole vocab""",
-#     tags=["Routes"],
-# )
-# async def export_vocab(request: Request, word_list=Form(...)):
-
-#     return templates.TemplateResponse(
-#         "exported.html", {"request": request, "word_list": word_list}
-#     )
 
 
 """

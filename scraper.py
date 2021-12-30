@@ -80,6 +80,9 @@ def scrape(url: str, lang, recursive=False) -> str:
                     text += scrape(link, lang=lang)
                 except requests.exceptions.InvalidSchema as e:
                     print(e)
+    if lang == "zh":
+        text = text.encode('utf-8').decode('gbk')
+        title = title.encode('utf-8').decode('gbk')
     return text, title
 
 
