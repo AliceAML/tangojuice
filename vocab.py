@@ -5,6 +5,7 @@ import itertools
 import json
 import spacy
 from collections import defaultdict
+from nltk.metrics.distance import edit_distance
 
 from scraper import scrape
 from deepl_translate import translate
@@ -138,17 +139,26 @@ class Vocabulary:
         word_list = sorted(word_list, key=lambda word: word.lang_freq, reverse=False)
         # tri par fréquence doc (descendant)
         word_list = sorted(word_list, key=lambda word: word.doc_freq, reverse=True)
-        word_list = word_list[:nb_words]
 
-        print(f"Translating {nb_words} words...")
-        for word in word_list:
+        res_word_list = []
+
+        for i, word in enumerate(word_list):
+            print(i, end=" ")
             try:
                 word.translation = translate(
                     word.lemme, src=self.input_lang, dest=self.output_lang
                 )
+                # remove words that are too similar in both languages
+                if edit_distance(word.lemme, word.translation) > 2:
+                    res_word_list.append(word)
+                else:
+                    print(f"{word.lemme} -> {word.translation} too similar")
             except Exception as e:
                 print("Could not translate word")
-        return word_list
+            if len(res_word_list) >= nb_words:
+                break
+
+        return res_word_list
 
 
 def make_vocab(text, input_lang, output_lang, noPropNouns=False):
