@@ -168,14 +168,9 @@ class Vocabulary:
         for j, word in enumerate(res_word_list):
             word.html_example = choice(word.occurrences)
             for form in word.forms:
-                regex = r'\b' + form + r'\b'
-                regex_replacement = '*' + form.upper() + '*'
-                print(regex)
+                regex = r"\b" + form + r"\b"
+                regex_replacement = r"<b>" + form + r"</b>"
                 word.html_example = re.sub(regex, regex_replacement, word.html_example)
-            print("\n\n\n\n\n")
-            if j < 10:
-                print(word.html_example)
-            print("\n\n\n\n\n")
         return res_word_list
 
 
@@ -208,7 +203,6 @@ def make_vocab(text, input_lang, output_lang, noPropNouns=False):
         # print(f"{sent}, type {type(sent)}")
         vocab.process_sentence(sent, noPropNouns)
     print(f"{len(vocab.words)} lexemes extracted")
-
 
     return vocab
 
