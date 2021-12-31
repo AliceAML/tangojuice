@@ -18,8 +18,19 @@ Créer une application web qui extrait du vocabulaire d'un site web, texte ou fi
 Nous avons réalisé des points réguliers lors desquels nous avons présenté notre avancement l'un à l'autre et intégré les nouveautés dans le code. Le code était partagé via un dossier sur GitHub. Nous tenions à jour une liste des tâches à réaliser dans le fichier `README` de notre dossier GitHub.
 
 ### Identification des problèmes
-- Comment sélectionner les mots à extraire ?
+- Comment sélectionner les mots à extraire ? 
+
+  On voulait partir des listes de niveaux CECRL, ou des listes de vocabulaires correspondant à des niveaux de test de langues (HSK pour le chinois et JLPT pour le japonais). Mais après tout la fréquence paraissait une mesure suffisante pour évaluer la difficulté d’un mot. De plus nous avons trouvé des [listes](https://github.com/hermitdave/FrequencyWords) de mots (lemmes!) et leur fréquence, dans un format uniforme pour toutes les langues. 
+
+  Deuxièmement que faire des formes rare d’un mot par ailleur fréquent. Par exemple “serions” est une occurence relativement rare du lemme le plus fréquent du français. Faut-il l’extraire? De fait nous avons lemmatisé la liste de fréquence si bien que serions n’est pas extrait.
+
 - Comment accélérer le traitement du vocabulaire ? Le chargement du modèle SpaCy est la partie la plus longue du traitement du fichier, malheureusement il n'a pas été possible de charger tous les modèles au démarrage de l'application, car la mémoire disponible sur Heroku était insuffisante. De plus, comme l'application se met en veille, cela rendrait son redémarrage encore plus lent.
+
+- Quelles heuristiques pour nettoyer a minima les fichiers HTML parsés avec beautifulsoup? Pour l’instant on se débarasse des balises script et no script. En tous les cas extraire à partir d’une url produit bien sur plus de bruit que l’extraction depuis un fichier srt sélectionné par l’utilisateur.
+
+  
+
+  
 
 ### Etapes du projet
 
