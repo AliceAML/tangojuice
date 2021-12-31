@@ -46,11 +46,6 @@ def scrape(url: str, lang, recursive=False) -> str:
     netloc = urlparse(url).netloc
     response = requests.get(url)
 
-    if response.status_code >= 400:
-        print(f"Scrape error: {response.status_code} ")
-        print("The error will be obvious for the user in the result page")
-        return response.status_code, None
-
     soup = BeautifulSoup(response.text, "lxml")
     title = soup.find("title").text
 
@@ -60,6 +55,11 @@ def scrape(url: str, lang, recursive=False) -> str:
         except youtube_transcript_api._errors.NoTranscriptFound as e:
             raise e
     else:
+        if response.status_code >= 400:
+            print(f"Scrape error: {response.status_code} ")
+            print("The error will be obvious for the user in the result page")
+            return response.status_code, None
+
         for elt in soup("noscript"):
             elt.extract()
         for elt in soup("script"):
@@ -90,7 +90,6 @@ def scrape(url: str, lang, recursive=False) -> str:
             title = title.encode("utf-8").decode("gbk")
         except UnicodeDecodeError:
             pass
-
 
     print(text)
     print("title", title)
