@@ -6,9 +6,10 @@ import json
 import spacy
 from collections import defaultdict
 from nltk.metrics.distance import edit_distance
-
+from random import choice
 from scraper import scrape
 from deepl_translate import translate
+import regex as re
 
 
 STOPWORD_THRESHOLD = 1
@@ -166,6 +167,17 @@ class Vocabulary:
             if len(res_word_list) >= nb_words:
                 break
 
+        for j, word in enumerate(res_word_list):
+            word.html_example = choice(word.occurrences)
+            for form in word.forms:
+                regex = r'\b' + form + r'\b'
+                regex_replacement = '*' + form.upper() + '*'
+                print(regex)
+                word.html_example = re.sub(regex, regex_replacement, word.html_example)
+            print("\n\n\n\n\n")
+            if j < 10:
+                print(word.html_example)
+            print("\n\n\n\n\n")
         return res_word_list
 
 
@@ -178,7 +190,6 @@ def make_vocab(text, input_lang, output_lang, noPropNouns=False):
         open(f"frequency_lists/{input_lang}_full_lemmas.json", "r")
     )
     vocab = Vocabulary(input_lang, output_lang, lang_frequencies)
-
     print(f"Load {MODEL_NAMES[input_lang]} SpaCy model")
     nlp = spacy.load(MODEL_NAMES[input_lang])
 
@@ -200,9 +211,7 @@ def make_vocab(text, input_lang, output_lang, noPropNouns=False):
         vocab.process_sentence(sent, noPropNouns)
     print(f"{len(vocab.words)} lexemes extracted")
 
-    for w in vocab.words:
-        print(w)
-        print(vocab.words[w])
+
     return vocab
 
 
