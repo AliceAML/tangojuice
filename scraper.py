@@ -91,6 +91,7 @@ def scrape(url: str, lang, recursive=False) -> str:
         except UnicodeDecodeError:
             pass
 
+
     print(text)
     print("title", title)
     return text, title

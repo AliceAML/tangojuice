@@ -164,13 +164,19 @@ class Vocabulary:
                 print("Could not translate word")
             if len(res_word_list) >= nb_words:
                 break
-
+        print("res word list")
         for j, word in enumerate(res_word_list):
             word.html_example = choice(word.occurrences)
+            print("vocab", word)
             for form in word.forms:
-                regex = r"\b" + form + r"\b"
-                regex_replacement = r"<b>" + form + r"</b>"
-                word.html_example = re.sub(regex, regex_replacement, word.html_example)
+
+                if self.input_lang in ["zh", "ja"]:
+                    replacement = r'<span style="color:#ba68c8">' + form + r"</span>"
+                    word.html_example = word.html_example.replace(form, replacement )
+                else:
+                    replacement = r"<b>" + form + r"</b>"
+                    regex = r"\b" + form + r"\b"
+                    word.html_example = re.sub(regex, replacement, word.html_example)
         return res_word_list
 
 
