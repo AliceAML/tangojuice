@@ -9,6 +9,16 @@
             <li><a href="#file_form">From .srt file</a></li>
         </ul>
         <div class="box-wrap">
+            <div id="file_form" class="tab">
+                <label for="srtfile">Extract vocabulary from this subtitle file (.srt only)</label>
+                <br />
+                <input type="file" name="srtfile" accept=".srt" />
+            </div>
+            <div id="text_form" class="tab">
+                <label for="text">Extract vocabulary from this text</label>
+                <br />
+                <textarea id="text" name="text" rows="5" class="box"></textarea>
+            </div>
             <div id="url_form" class="tab">
                 <label for="url">Scrape this url</label>
                 <br />
@@ -17,16 +27,6 @@
                 <label for=" recursive">Recursive</label>
                 <br />
                 <input type="checkbox" id="recursive" name="recursive" value="true">
-            </div>
-            <div id="text_form" class="tab">
-                <label for="text">Extract vocabulary from this text</label>
-                <br />
-                <textarea id="text" name="text" rows="5" class="box"></textarea>
-            </div>
-            <div id="file_form" class="tab">
-                <label for="srtfile">Extract vocabulary from this subtitle file (.srt only)</label>
-                <br />
-                <input type="file" name="srtfile" accept=".srt" />
             </div>
         </div>
     </div>
