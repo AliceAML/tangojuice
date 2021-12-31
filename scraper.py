@@ -84,23 +84,16 @@ def scrape(url: str, lang, recursive=False) -> str:
                     print(e)
 
     if lang == "zh":
-        new_text = ""
-        new_title = ""
-        # pour éviter les problèmes d'encodage...
-        for character in text:
-            try:
-                new_text += character.encode("utf-8").decode("gbk")
-            except UnicodeDecodeError as e:
-                print(character, e, file=open("debug.txt", "w"))
-        for character in text:
-            try:
-                new_title += character.encode("utf-8").decode("gbk")
-            except UnicodeDecodeError as e:
-                print(character, e, file=open("debug.txt", "w"))
+        try:
+            text = text.encode("utf-8").decode("gbk")
+        except UnicodeDecodeError:
+            pass
+        try:
+            title = title.encode("utf-8").decode("gbk")
+        except UnicodeDecodeError:
+            pass
 
-        text = new_text
-        title = new_title
-
+    print(text)
     print("title", title)
     return text, title
 
