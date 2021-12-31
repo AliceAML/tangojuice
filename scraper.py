@@ -54,8 +54,6 @@ def scrape(url: str, lang, recursive=False) -> str:
     soup = BeautifulSoup(response.text, "lxml")
     title = soup.find("title").text
 
-    # add call to youtube.get_text() for youtube videos !
-    # check if it's a youtube video
     if is_youtube_video(url):
         try:
             text = youtube_get_text(url, lang)
