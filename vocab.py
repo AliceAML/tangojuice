@@ -68,8 +68,6 @@ class Word:
         self.occurrences.append(sentence)
         self.doc_freq += 1
 
-
-
     def is_rare(self) -> bool:
         """
         Return true if this word is rare
@@ -103,7 +101,7 @@ class Vocabulary:
         Add tokens from this sentence to the vocabulary.
         """
         for word in sentence:
-            #chinese tokens don't have lemmas
+            # chinese tokens don't have lemmas
             lemma = word.lemma_ if word.lemma_ else str(word)
             key = lemma + word.pos_
             # do not include stopwords and punctuation
@@ -170,14 +168,9 @@ class Vocabulary:
         for j, word in enumerate(res_word_list):
             word.html_example = choice(word.occurrences)
             for form in word.forms:
-                regex = r'\b' + form + r'\b'
-                regex_replacement = '*' + form.upper() + '*'
-                print(regex)
+                regex = r"\b" + form + r"\b"
+                regex_replacement = r"<b>" + form + r"</b>"
                 word.html_example = re.sub(regex, regex_replacement, word.html_example)
-            print("\n\n\n\n\n")
-            if j < 10:
-                print(word.html_example)
-            print("\n\n\n\n\n")
         return res_word_list
 
 
@@ -197,20 +190,19 @@ def make_vocab(text, input_lang, output_lang, noPropNouns=False):
     doc = nlp(text)
     print("Extract vocabulary")
 
-    #debugging chinese
+    # debugging chinese
     if input_lang == "zh":
         for sent in doc.sents:
             for tok in sent:
-                #print(f"spacy chinese token :{tok}")
+                # print(f"spacy chinese token :{tok}")
                 pass
-        #for tok in doc:
-         #   print(f"spacy chinese token :{tok}")
+        # for tok in doc:
+        #   print(f"spacy chinese token :{tok}")
 
     for sent in doc.sents:
-        #print(f"{sent}, type {type(sent)}")
+        # print(f"{sent}, type {type(sent)}")
         vocab.process_sentence(sent, noPropNouns)
     print(f"{len(vocab.words)} lexemes extracted")
-
 
     return vocab
 

@@ -19,7 +19,7 @@
         <td>{{ word.pos }}</td>
         <td>{{ word.doc_freq }}</td>
         <td>{{ word.translation}}</td>
-        <td><i>{{ word.html_example}}</i></td>
+        <td><i> {% autoescape false %}{{ word.html_example }}{% endautoescape %}</i></td>
     </tr>
     {% endfor %}
 </table>
