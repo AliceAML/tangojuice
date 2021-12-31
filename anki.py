@@ -28,13 +28,9 @@ def generate_anki_cards(vocab: list[Word], title: str) -> io.BytesIO:
     my_deck = genanki.Deck(random.randrange(1 << 30, 1 << 31), title[:50])
 
     for word in vocab:
-        ex_nb = random.randrange(0, len(word.occurrences))
-        example = word.occurrences[ex_nb]
-        for form in word.forms:
-            example = example.replace(form, "<b>" + form + "</b>")
         my_note = genanki.Note(
             model=my_model,
-            fields=[word.lemme, example, word.translation, word.pos],
+            fields=[word.lemme, word.html_example, word.translation, word.pos],
         )
         my_deck.add_note(my_note)
     stream = io.BytesIO()
