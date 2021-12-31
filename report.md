@@ -6,9 +6,11 @@
 
 Créer une application web qui extrait du vocabulaire d'un site web, texte ou fichier de sous-titre afin de permettre le pré-apprentissage du vocabulaire à des apprenants de niveau intermédiaire ou avancé.
 
-## Données
+## Données et dépendances
 
 [Listes de fréquences](https://github.com/hermitdave/FrequencyWords) (licence MIT) calculées à partir du [corpus OpenSubtitles 2018](https://opus.nlpl.eu/OpenSubtitles2018.php).
+
+
 
 ## Méthodologie
 
@@ -27,7 +29,12 @@ Nous avons ensuite progressivement amélioré ces trois volets de notre projet a
 
 ## Implémentation
 
+
+
+
+
 ### Design pattern
+
 Nous avons essayé de suivre le *design pattern* **Modèle/Vue/Controleur**.
 * `app.py` : **controleur** FastAPI qui fait appel aux fonctions de *scraping* et de création du vocabulaire puis les envoie à la **vue** (contenue dans les *templates* `Jinja2`)
 * `vocab.py`: **modèle** principal, qui contient la définition des objets `Word` et `Vocabulary`. Le texte est parsé avec SpaCy et chaque nouveau mot est ajouté au vocabulaire, avec son lemme, sa catégorie morphosyntaxique, etc. puis une liste des mots les plus pertinents est retenue en triant le vocabulaire par fréquence dans la liste de fréquence, puis par fréquence inverse dans le document.
@@ -36,6 +43,24 @@ Nous avons essayé de suivre le *design pattern* **Modèle/Vue/Controleur**.
 
 ### Déploiement sur Heroku
 Notre application est automatiquement déployée sur Heroku à chaque mise à jour de la branche `main`. Elle est disponible à cette adresse : https://tangojuice.herokuapp.com/
+
+
+
+### Dépendances et Librairies
+
+[Spacy](https://spacy.io) se charge de la lemmatization, de la tokenisation et de l’étiquetage morphosyntaxique. Nous utilisons. 
+
+[FastApi]() gère tout le backend de l’application. Nous utilisons 5 modèles (anglais, français, allemand, japonais, chinois).
+
+##### APIs utilisées
+
+[DeepL](https://pypi.org/project/deepl/) pour la traduction automatique.
+
+[Youtube Transcript API](https://pypi.org/project/youtube-transcript-api/) permet de  récupérer les sous-titres de vidéos si le nom de domaine est 	 youtube.com.
+
+
+
+
 
 ## Améliorations possibles
 *  La sélection des mots proposés pourraient sûrement être rendue plus pertinente avec une approche statistique plus sophistiquée, et en incluant des groupes de plusieurs tokens (par exemple "New York").
