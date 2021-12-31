@@ -48,9 +48,9 @@ Notre application est automatiquement déployée sur Heroku à chaque mise à jo
 
 ### Dépendances et Librairies
 
-[Spacy](https://spacy.io) se charge de la lemmatization, de la tokenisation et de l’étiquetage morphosyntaxique. Nous utilisons. 
+[Spacy](https://spacy.io) se charge de la lemmatization, de la tokenisation et de l’étiquetage morphosyntaxique. Nous utilisons. Nous utilisons 5 modèles (anglais, français, allemand, japonais, chinois).
 
-[FastApi]() gère tout le backend de l’application. Nous utilisons 5 modèles (anglais, français, allemand, japonais, chinois).
+[FastApi]() gère tout le backend de l’application. 
 
 ##### APIs utilisées
 
