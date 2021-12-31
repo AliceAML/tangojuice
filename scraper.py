@@ -54,7 +54,6 @@ def scrape(url: str, lang, recursive=False) -> str:
     soup = BeautifulSoup(response.text, "lxml")
     title = soup.find("title").text
 
-
     # add call to youtube.get_text() for youtube videos !
     # check if it's a youtube video
     if is_youtube_video(url):
@@ -83,9 +82,25 @@ def scrape(url: str, lang, recursive=False) -> str:
                     text += scrape(link, lang=lang)
                 except requests.exceptions.InvalidSchema as e:
                     print(e)
+
     if lang == "zh":
-        text = text.encode('utf-8').decode('gbk')
-        title = title.encode('utf-8').decode('gbk')
+        new_text = ""
+        new_title = ""
+        # pour éviter les problèmes d'encodage...
+        for character in text:
+            try:
+                new_text += character.encode("utf-8").decode("gbk")
+            except UnicodeDecodeError as e:
+                print(character, e, file=open("debug.txt", "w"))
+        for character in text:
+            try:
+                new_title += character.encode("utf-8").decode("gbk")
+            except UnicodeDecodeError as e:
+                print(character, e, file=open("debug.txt", "w"))
+
+        text = new_text
+        title = new_title
+
     print("title", title)
     return text, title
 
