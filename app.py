@@ -67,15 +67,16 @@ async def extract_vocab_from_form(
             text_url, title_url = scraper.scrape(
                 url, recursive=recursive, lang=inputLang
             )
-            #weird way of handling a 403 status code error
+            # weird way of handling a 403 status code error
             if isinstance(text_url, int) and not title_url:
-                raise HTTPException(status_code=text_url, detail="Access denied. If you are scraping an article, try and copy paste its content in the 'From Text' section of the home page")
+                raise HTTPException(
+                    status_code=text_url,
+                    detail="Access denied. If you are scraping an article, try and copy paste its content in the 'From Text' section of the home page",
+                )
             text += text_url
             title += title_url
         except youtube_transcript_api._errors.NoTranscriptFound as e:
-            raise HTTPException(status_code=404, detail="Subtitles not found")
-
-
+            raise HTTPException(status_code=400, detail="Subtitles not found")
 
     elif srtfile != None:
         print(f"reading srt file {srtfile=}")
@@ -84,9 +85,8 @@ async def extract_vocab_from_form(
         srt = srt.decode("utf-8")
         text += scraper.get_text_from_srt(srt)
 
-
     if text.strip() == "":
-        raise HTTPException(status_code=404, detail="No text to parse")
+        raise HTTPException(status_code=400, detail="No text to parse")
     voc = vocab.make_vocab(
         text,
         input_lang=inputLang.lower(),
@@ -94,6 +94,11 @@ async def extract_vocab_from_form(
         noPropNouns=noPropNouns,
     )
     vocList = voc.extract_vocab(nb_words=int(nbWords), onlyRareWords=rareWordsOnly)
+    if len(vocList) == 0:
+        raise HTTPException(
+            status_code=400,
+            detail="No vocabulary found, try copy/pasting the text instead.",
+        )
 
     return vocList, title
 
@@ -169,8 +174,6 @@ async def download_anki(
     response.headers["Content-Disposition"] = "attachment; filename=tangojuice.apkg"
 
     return response
-
-
 
 
 """
