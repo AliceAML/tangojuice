@@ -7,9 +7,6 @@ Language learning web app that extracts the vocabulary from a webpage or a video
 
 [Consignes](https://loicgrobol.github.io/web-interfaces/assignments/projets.html)
 
-![screenshot](Screenshot_results.png)
-
-
 ## How to run the API locally
 
 * clone repo
