@@ -8,7 +8,7 @@ Créer une application web qui extrait du vocabulaire d'un site web, texte ou fi
 
 ## Données
 
-[Listes de fréquences](https://github.com/hermitdave/FrequencyWords) calculées à partir du corpus OpenSubtitles
+[Listes de fréquences](https://github.com/hermitdave/FrequencyWords) (licence MIT) calculées à partir du [corpus OpenSubtitles 2018](https://opus.nlpl.eu/OpenSubtitles2018.php).
 
 ## Méthodologie
 
