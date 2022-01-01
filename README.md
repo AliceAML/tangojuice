@@ -3,10 +3,6 @@
 
 Language learning web app that extracts the vocabulary from a webpage or a video's captions, filters it by difficulty level and automatically creates [Anki](https://apps.ankiweb.net/) flashcards. Available at https://tangojuice.herokuapp.com/
 
-[Links and ideas on Notion](https://sturdy-starfish-3ee.notion.site/Projet-API-31a173f329eb45c4acdcfc5e60d851e1)
-
-[Consignes](https://loicgrobol.github.io/web-interfaces/assignments/projets.html)
-
 ## How to run the API locally
 
 * clone repo
